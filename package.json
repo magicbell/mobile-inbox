@@ -10,8 +10,17 @@
     "test": "jest"
   },
   "dependencies": {
+    "@aws-amplify/react-native": "^1.0.17",
+    "@aws-amplify/rtn-push-notification": "^1.2.17",
+    "@magicbell/react-headless": "^4.5.0",
+    "@react-native-async-storage/async-storage": "^1.22.1",
+    "@react-native-community/push-notification-ios": "^1.11.0",
+    "aws-amplify": "^6.0.17",
+    "magicbell": "^3.1.1",
     "react": "18.2.0",
-    "react-native": "0.73.4"
+    "react-native": "0.73.4",
+    "react-native-get-random-values": "^1.10.0",
+    "react-native-url-polyfill": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
