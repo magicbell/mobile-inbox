@@ -101,4 +101,4 @@ export const config = {
   },
 };
 
-export const currentConfig = config.prod;
+export const currentConfig = config.local;

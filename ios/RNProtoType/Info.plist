@@ -23,16 +23,16 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
-	<true/>
+        <true />
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
-		<false/>
+            <false />
 		<key>NSAllowsLocalNetworking</key>
-		<true/>
+            <true />
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+        <string />
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
@@ -50,7 +50,9 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+    <false />
+    <key>ITSAppUsesNonExemptEncryption</key>
+    <false />
 	<key>UIAppFonts</key>
 	<array>
 		<string>Inter-Black.ttf</string>
