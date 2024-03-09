@@ -10,7 +10,6 @@ import {MagicBellProvider} from '@magicbell/react-headless';
 
 import {MIN_LOADING_TIME} from '../screens/Splash';
 import {UserClient} from 'magicbell/user-client';
-import {currentConfig} from '../constants';
 
 const key = 'mb';
 
@@ -18,6 +17,7 @@ type Credentials = {
   apiKey: string;
   userEmail: string;
   userHmac: string;
+  serverURL: string;
 };
 
 type CredentialsContextType = {
@@ -72,12 +72,13 @@ export default function CredentialsProvider({
   }, []);
 
   if (credentials) {
+    console.log('credentials', JSON.stringify(credentials));
     return (
       <MagicBellProvider
         apiKey={credentials.apiKey}
         userEmail={credentials.userEmail}
         userKey={credentials.userHmac}
-        serverURL={currentConfig.serverUrl}>
+        serverURL={credentials.serverURL}>
         <CredentialsContext.Provider value={{credentials, signIn, signOut}}>
           {children}
         </CredentialsContext.Provider>
@@ -98,12 +99,12 @@ const getCredentials = async () => {
     return null;
   }
   try {
-    const {apiKey, userEmail, userHmac} = JSON.parse(value);
+    const {apiKey, userEmail, userHmac, serverURL} = JSON.parse(value);
     const client = new UserClient({
       apiKey: apiKey,
       userEmail: userEmail,
       userHmac: userHmac,
-      host: currentConfig.serverUrl,
+      host: serverURL,
     });
     const config = await client.request({
       method: 'GET',
@@ -111,7 +112,7 @@ const getCredentials = async () => {
     });
     if (config) {
       console.log('credentials', config);
-      return {apiKey, userEmail, userHmac};
+      return {apiKey, userEmail, userHmac, serverURL};
     }
   } catch (e) {
     console.error('Error parsing credentials', e);

@@ -99,6 +99,12 @@ export const config = {
     userHmac: '',
     serverUrl: 'https://1b35-79-153-3-135.ngrok-free.app',
   },
+  review: {
+    apiKey: '552efd58f59315d065e45b07f8d8f8a2751c2b5b',
+    userEmail: 'matthewoxley001@gmail.com',
+    userHmac: '5n4ooUtzydnYq5GYh6PIWGeP2alepTf/Qgb/Sp/g3Co=',
+    serverUrl: 'https://api-4374.magicbell.cloud/',
+  },
 };
 
 export const currentConfig = config.local;

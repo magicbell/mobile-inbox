@@ -33,6 +33,7 @@ export default function useDeviceToken() {
         if (r.includes(token)) {
           return;
         }
+        console.log('posting token', token);
         client
           .request({
             method: 'POST',
