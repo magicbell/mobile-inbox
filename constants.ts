@@ -97,7 +97,7 @@ export const config = {
     apiKey: '8cd17191a14339cb1d4e58c4ea471eeca51d2c70',
     userEmail: 'matt@magicbell.io',
     userHmac: '',
-    serverUrl: 'https://1b35-79-153-3-135.ngrok-free.app',
+    serverUrl: 'https://magicbell-matt.loca.lt',
   },
   review: {
     apiKey: '552efd58f59315d065e45b07f8d8f8a2751c2b5b',

@@ -41,6 +41,7 @@ export default function useDeviceToken() {
             data: {
               apns: {
                 device_token: token,
+                installation_id: __DEV__ ? 'test' : '',
               },
             },
           })

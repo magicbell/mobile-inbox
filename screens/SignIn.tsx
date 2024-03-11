@@ -1,9 +1,10 @@
 import React, {useCallback, useState} from 'react';
-import {SafeAreaView, View} from 'react-native';
-import {config, currentConfig, styles} from '../constants';
+import {View} from 'react-native';
+import {config, currentConfig} from '../constants';
 import CustomButton from '../components/Button';
 import TextInput from '../components/TextInput';
 import Svg, {G, Path} from 'react-native-svg';
+import KeyboardAvoidingContainer from '../components/KeyboardAvoidingContainer';
 import {Box, CheckIcon, NativeBaseProvider, Select} from 'native-base';
 
 import {useCredentials} from '../hooks/useAuth';
@@ -29,7 +30,7 @@ export const SignInScreen = (): React.JSX.Element => {
 
   return (
     <NativeBaseProvider>
-      <SafeAreaView style={styles.sectionContainer}>
+      <KeyboardAvoidingContainer>
         <Svg
           viewBox="0 0 120 121"
           fill="none"
@@ -105,7 +106,7 @@ export const SignInScreen = (): React.JSX.Element => {
             onPress={handleSubmit}
           />
         </View>
-      </SafeAreaView>
+      </KeyboardAvoidingContainer>
     </NativeBaseProvider>
   );
 };
