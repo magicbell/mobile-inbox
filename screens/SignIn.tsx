@@ -76,7 +76,7 @@ export const SignInScreen = (): React.JSX.Element => {
                 }) as (itemValue: string) => void
               }>
               {Object.keys(config).map(key => {
-                return <Select.Item label={key} value={key} />;
+                return <Select.Item label={key} value={key} key={key} />;
               })}
             </Select>
           </Box>

@@ -8,6 +8,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import PushNotificationIOS, {
   PushNotification,
 } from '@react-native-community/push-notification-ios';
+import {Platform, StyleSheet} from 'react-native';
 
 import {useCredentials} from './hooks/useAuth';
 import {routes} from './constants';
@@ -45,6 +46,9 @@ export default function Navigator(props: IProps) {
   const isLoading = typeof credentials === 'undefined';
 
   useEffect(() => {
+    if (Platform.OS !== 'ios') {
+      return;
+    }
     const type = 'localNotification';
     PushNotificationIOS.addEventListener(type, onRemoteNotification);
     return () => {

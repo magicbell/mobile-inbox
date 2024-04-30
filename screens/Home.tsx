@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Button, SafeAreaView, ScrollView} from 'react-native';
+import {Button, SafeAreaView, ScrollView, Text} from 'react-native';
 import {styles} from '../constants';
 import {useCredentials} from '../hooks/useAuth';
 import {useNotifications} from '@magicbell/react-headless';
@@ -10,7 +10,7 @@ import Notification from '../components/Notification';
 export default function HomeScreen(): React.JSX.Element {
   const [_, __, logout] = useCredentials();
   const store = useNotifications();
-  useDeviceToken();
+  const token = useDeviceToken();
 
   return (
     <SafeAreaView style={styles.sectionContainer}>
@@ -19,6 +19,7 @@ export default function HomeScreen(): React.JSX.Element {
           <Notification key={notification.id} data={notification} />
         ))}
       </ScrollView>
+      <Text>Device token: {token}</Text>
       <Button title="logout" onPress={logout} />
     </SafeAreaView>
   );

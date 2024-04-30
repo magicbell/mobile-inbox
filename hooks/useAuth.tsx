@@ -9,7 +9,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {MagicBellProvider} from '@magicbell/react-headless';
 
 import {MIN_LOADING_TIME} from '../screens/Splash';
-import {UserClient} from 'magicbell/user-client';
 
 const key = 'mb';
 
@@ -72,7 +71,6 @@ export default function CredentialsProvider({
   }, []);
 
   if (credentials) {
-    console.log('credentials', JSON.stringify(credentials));
     return (
       <MagicBellProvider
         apiKey={credentials.apiKey}
@@ -100,18 +98,23 @@ const getCredentials = async () => {
   }
   try {
     const {apiKey, userEmail, userHmac, serverURL} = JSON.parse(value);
-    const client = new UserClient({
-      apiKey: apiKey,
-      userEmail: userEmail,
-      userHmac: userHmac,
-      host: serverURL,
-    });
-    const config = await client.request({
+    const options = {
       method: 'GET',
-      path: '/config',
-    });
+      headers: {
+        'Content-Type': 'application/json',
+        'X-MAGICBELL-API-KEY': apiKey,
+        'X-MAGICBELL-USER-EMAIL': userEmail,
+        // 'X-MAGICBELL-USER-HMAC': userHmac,
+      },
+    };
+
+    const config = await fetch('https://magicbell-matt.loca.lt/config', options)
+      .then(response => response.json())
+      .then(data => {
+        return data;
+      })
+      .catch(err => console.error(err));
     if (config) {
-      console.log('credentials', config);
       return {apiKey, userEmail, userHmac, serverURL};
     }
   } catch (e) {
