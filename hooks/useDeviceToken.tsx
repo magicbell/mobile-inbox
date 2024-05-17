@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import {clientSettings} from '@magicbell/react-headless';
-import {decode as atob} from 'base-64';
 
 export default function useDeviceToken() {
   const [token, setToken] = React.useState<string | null>(null);
@@ -21,32 +20,23 @@ export default function useDeviceToken() {
     }
     const client = clientSettings.getState().getClient();
     if (!client) {
+      console.error('Magicbell client expected');
       return;
     }
+    console.log('posting token', token);
     client
       .request({
-        method: 'GET',
+        method: 'POST',
         path: '/channels/mobile_push/apns/tokens',
+        data: {
+          apns: {
+            device_token: token,
+            installation_id: "development"
+          },
+        },
       })
-      .then((result: string[]) => {
-        const r = result.map((x: string) => JSON.parse(atob(x)).device_token);
-        if (r.includes(token)) {
-          return;
-        }
-        console.log('posting token', token);
-        client
-          .request({
-            method: 'POST',
-            path: '/channels/mobile_push/apns/tokens',
-            data: {
-              apns: {
-                device_token: token,
-              },
-            },
-          })
-          .catch(err => {
-            console.log('post token error', err);
-          });
+      .catch(err => {
+        console.log('post token error', err);
       });
   }, [token]);
 
