@@ -1,9 +1,16 @@
 import React, { useEffect } from 'react';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import { Credentials } from './useAuth';
+import deviceInfo from 'react-native-device-info'
 import { UserClient } from 'magicbell/user-client';
 
-const installationId = () => "development"
+const installationId = () => {
+  const packageName = deviceInfo.getInstallerPackageNameSync()
+  return (
+    packageName === "AppStore" ||
+    packageName === "TestFlight"
+  ) ? "production" : "development"
+}
 
 const clientWithCredentials = (credentials: Credentials) => new UserClient({
   apiKey: credentials.apiKey,
@@ -76,7 +83,7 @@ export default function useDeviceToken(credentials: Credentials | null | undefin
       unregisterTokenWithCredentials(token, credentialsUsedToRegister)
       setCredentialsUsedToRegister(null)
     }
-    
+
     // We're logged in (after a logout, or after logging in as a new user) and need to register the token
     if (credentials) {
       registerTokenWithCredentials(token, credentials)
