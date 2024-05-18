@@ -11,7 +11,7 @@ import {MagicBellProvider} from '@magicbell/react-headless';
 import {MIN_LOADING_TIME} from '../screens/Splash';
 import {UserClient} from 'magicbell/user-client';
 
-const key = 'mb';
+const storageKey = 'mb';
 
 type Credentials = {
   apiKey: string;
@@ -94,7 +94,7 @@ export default function CredentialsProvider({
 }
 
 const getCredentials = async () => {
-  const value = await AsyncStorage.getItem(key);
+  const value = await AsyncStorage.getItem(storageKey);
   if (!value) {
     return null;
   }
@@ -123,9 +123,9 @@ const getCredentials = async () => {
 
 const storeCredentials = (value: Credentials) => {
   const jsonValue = JSON.stringify(value);
-  return AsyncStorage.setItem(key, jsonValue);
+  return AsyncStorage.setItem(storageKey, jsonValue);
 };
 
 const deleteCredentials = () => {
-  return AsyncStorage.removeItem(key);
+  return AsyncStorage.removeItem(storageKey);
 };

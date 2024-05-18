@@ -43,6 +43,7 @@ export const onRemoteNotification = (notification: PushNotification) => {
 export default function Navigator(props: IProps) {
   const [credentials] = useCredentials();
   const isLoading = typeof credentials === 'undefined';
+  const isSignedIn = !!credentials;
 
   useEffect(() => {
     const type = 'localNotification';
@@ -57,9 +58,10 @@ export default function Navigator(props: IProps) {
       <Stack.Navigator initialRouteName={routes.splash}>
         {isLoading
           ? props.loading
-          : !credentials
-          ? props.signedOut
-          : props.signedIn}
+          : isSignedIn
+            ? props.signedIn
+            : props.signedOut
+        }
       </Stack.Navigator>
     </NavigationContainer>
   );
