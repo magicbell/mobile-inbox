@@ -22,8 +22,10 @@
 		94F39C3E2BF62367004A2E97 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		9CCF2932FE0A422888273499 /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 192914F318F44677A0EEFF65 /* Inter-Light.ttf */; };
 		A5B6B8698B3C450F8CAE4010 /* Inter-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42AAA1575E32465890D7A3BE /* Inter-ExtraBold.ttf */; };
+		BB279E662DD38E8FD7C6E169 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1F05137E9B6E3AE2133EA3 /* ExpoModulesProvider.swift */; };
 		D87213DD11DD44BAA6B55C88 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A38DA87ABC64A718243F8E2 /* Inter-Bold.ttf */; };
 		E302FFF5729C47C0B295248A /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA5A8A8786BB44BFB3465D33 /* Inter-SemiBold.ttf */; };
+		FF62A04DFE7AB99C59BF4809 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE7C754422E702FC24F171D /* ExpoModulesProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,7 @@
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-RNProtoType-RNProtoTypeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNProtoType-RNProtoTypeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A38DA87ABC64A718243F8E2 /* Inter-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Bold.ttf"; path = "../fonts/Inter-Bold.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-RNProtoType.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNProtoType.debug.xcconfig"; path = "Target Support Files/Pods-RNProtoType/Pods-RNProtoType.debug.xcconfig"; sourceTree = "<group>"; };
+		3CE7C754422E702FC24F171D /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-RNProtoType-RNProtoTypeTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		42AAA1575E32465890D7A3BE /* Inter-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-ExtraBold.ttf"; path = "../fonts/Inter-ExtraBold.ttf"; sourceTree = "<group>"; };
 		483F6509F056499493B230B1 /* Inter-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Regular.ttf"; path = "../fonts/Inter-Regular.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-RNProtoType.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNProtoType.release.xcconfig"; path = "Target Support Files/Pods-RNProtoType/Pods-RNProtoType.release.xcconfig"; sourceTree = "<group>"; };
@@ -59,6 +62,7 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-RNProtoType.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNProtoType.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = RNProtoType/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-RNProtoType-RNProtoTypeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNProtoType-RNProtoTypeTests.release.xcconfig"; path = "Target Support Files/Pods-RNProtoType-RNProtoTypeTests/Pods-RNProtoType-RNProtoTypeTests.release.xcconfig"; sourceTree = "<group>"; };
+		8E1F05137E9B6E3AE2133EA3 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-RNProtoType/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		992FD2A6B2714273B759B0DF /* Inter-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Thin.ttf"; path = "../fonts/Inter-Thin.ttf"; sourceTree = "<group>"; };
 		AA5A8A8786BB44BFB3465D33 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-SemiBold.ttf"; path = "../fonts/Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		D19B03B4DAAD40898E13E30C /* Inter-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Black.ttf"; path = "../fonts/Inter-Black.ttf"; sourceTree = "<group>"; };
@@ -119,6 +123,22 @@
 			name = RNProtoType;
 			sourceTree = "<group>";
 		};
+		157943C278AC8912E95D9501 /* RNProtoTypeTests */ = {
+			isa = PBXGroup;
+			children = (
+				3CE7C754422E702FC24F171D /* ExpoModulesProvider.swift */,
+			);
+			name = RNProtoTypeTests;
+			sourceTree = "<group>";
+		};
+		280ECB9B48940E2025C159BA /* RNProtoType */ = {
+			isa = PBXGroup;
+			children = (
+				8E1F05137E9B6E3AE2133EA3 /* ExpoModulesProvider.swift */,
+			);
+			name = RNProtoType;
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +147,15 @@
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-RNProtoType-RNProtoTypeTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		465DC089AE8E52CA26FA54D1 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				280ECB9B48940E2025C159BA /* RNProtoType */,
+				157943C278AC8912E95D9501 /* RNProtoTypeTests */,
+			);
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -146,6 +175,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
 				E4BB5B31A607499B93445182 /* Resources */,
+				465DC089AE8E52CA26FA54D1 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -196,6 +226,7 @@
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "RNProtoTypeTests" */;
 			buildPhases = (
 				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
+				5EA4884CABA3D0D195B72B5E /* [Expo] Configure project */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
@@ -217,6 +248,7 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "RNProtoType" */;
 			buildPhases = (
 				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				583EE3C65DB586BEC295688A /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
@@ -332,6 +364,44 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RNProtoType/Pods-RNProtoType-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		583EE3C65DB586BEC295688A /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-RNProtoType/expo-configure-project.sh\"\n";
+		};
+		5EA4884CABA3D0D195B72B5E /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-RNProtoType-RNProtoTypeTests/expo-configure-project.sh\"\n";
+		};
 		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -435,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E356F31AD99517003FC87E /* RNProtoTypeTests.m in Sources */,
+				FF62A04DFE7AB99C59BF4809 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +515,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				BB279E662DD38E8FD7C6E169 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,8 +551,10 @@
 					"-lc++",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RNProtoType.app/RNProtoType";
 			};
 			name = Debug;
@@ -503,8 +577,10 @@
 					"-lc++",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RNProtoType.app/RNProtoType";
 			};
 			name = Release;
@@ -530,6 +606,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.example.RNProtoType2345;
 				PRODUCT_NAME = RNProtoType;
@@ -559,6 +636,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.example.RNProtoType2345;
 				PRODUCT_NAME = RNProtoType;
