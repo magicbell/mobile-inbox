@@ -10,10 +10,11 @@ import {MagicBellProvider} from '@magicbell/react-headless';
 
 import {MIN_LOADING_TIME} from '../screens/Splash';
 import {UserClient} from 'magicbell/user-client';
+import useDeviceToken from './useDeviceToken';
 
 const storageKey = 'mb';
 
-type Credentials = {
+export type Credentials = {
   apiKey: string;
   userEmail: string;
   userHmac: string;
@@ -44,6 +45,8 @@ export default function CredentialsProvider({
   const [credentials, setCredentials] = useState<
     Credentials | null | undefined
   >(undefined);
+
+  useDeviceToken(credentials);
 
   const signIn = useCallback(async (c: Credentials) => {
     storeCredentials(c);
