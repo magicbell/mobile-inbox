@@ -1,16 +1,8 @@
 import React, { useEffect } from 'react';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import { getIosPushNotificationServiceEnvironmentAsync } from 'expo-application';
 import { Credentials } from './useAuth';
-import deviceInfo from 'react-native-device-info'
 import { UserClient } from 'magicbell/user-client';
-
-const installationId = () => {
-  const packageName = deviceInfo.getInstallerPackageNameSync()
-  return (
-    packageName === "AppStore" ||
-    packageName === "TestFlight"
-  ) ? "production" : "development"
-}
 
 const clientWithCredentials = (credentials: Credentials) => new UserClient({
   apiKey: credentials.apiKey,
@@ -22,7 +14,6 @@ const clientWithCredentials = (credentials: Credentials) => new UserClient({
 const unregisterTokenWithCredentials = async (token: string, credentials: Credentials) => {
   console.log('deleting token', token);
   const client = clientWithCredentials(credentials)
-  console.log(client)
   client
     .request({
       method: 'DELETE',
@@ -34,9 +25,9 @@ const unregisterTokenWithCredentials = async (token: string, credentials: Creden
 }
 
 const registerTokenWithCredentials = async (token: string, credentials: Credentials) => {
-  console.log('posting token', token);
+  const installationId = await getIosPushNotificationServiceEnvironmentAsync() || 'development'
+  console.log('posting token', token, installationId);
   const client = clientWithCredentials(credentials)
-  console.log(client)
   client
     .request({
       method: 'POST',
@@ -44,7 +35,7 @@ const registerTokenWithCredentials = async (token: string, credentials: Credenti
       data: {
         apns: {
           device_token: token,
-          installation_id: installationId()
+          installation_id: installationId
         },
       },
     })
