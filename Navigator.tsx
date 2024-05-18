@@ -5,9 +5,6 @@ import {
   createNavigationContainerRef,
 } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import PushNotificationIOS, {
-  PushNotification,
-} from '@react-native-community/push-notification-ios';
 
 import {useCredentials} from './hooks/useAuth';
 import {routes} from './constants';

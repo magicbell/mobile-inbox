@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import { DevicePushToken, getDevicePushTokenAsync, requestPermissionsAsync } from 'expo-notifications'
 import { getIosPushNotificationServiceEnvironmentAsync } from 'expo-application';
 import { Credentials } from './useAuth';
 import { UserClient } from 'magicbell/user-client';
@@ -49,12 +49,17 @@ export default function useDeviceToken(credentials: Credentials | null | undefin
   const [credentialsUsedToRegister, setCredentialsUsedToRegister] = React.useState<Credentials | null>(null);
 
   useEffect(() => {
-    PushNotificationIOS.requestPermissions().then(permissions => {
+    requestPermissionsAsync().then(permissions => {
       console.log('permissions', permissions);
-    });
-    PushNotificationIOS.addEventListener('register', (t: string) => {
-      setToken(t);
-    });
+    })
+    console.log("asking for token")
+    getDevicePushTokenAsync().then((token: DevicePushToken) => {
+      console.log("got token")
+      if (token.type !== "web") {
+        // no handling for web tokens in this demo
+        setToken(token.data)
+      }
+    })
   }, []);
 
   useEffect(() => {
