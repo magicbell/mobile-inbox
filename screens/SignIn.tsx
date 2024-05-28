@@ -1,12 +1,12 @@
-import React, {useCallback, useState} from 'react';
-import {SafeAreaView, View} from 'react-native';
-import {config, currentConfig, styles} from '../constants';
+import React, { useCallback, useEffect, useState } from 'react';
+import { SafeAreaView, View } from 'react-native';
+import { config, currentConfig, styles } from '../constants';
 import CustomButton from '../components/Button';
 import TextInput from '../components/TextInput';
-import Svg, {G, Path} from 'react-native-svg';
-import {Box, CheckIcon, NativeBaseProvider, Select} from 'native-base';
+import Svg, { G, Path } from 'react-native-svg';
+import { Box, CheckIcon, NativeBaseProvider, Select } from 'native-base';
 
-import {useCredentials} from '../hooks/useAuth';
+import { useCredentials } from '../hooks/useAuth';
 
 export const SignInScreen = (): React.JSX.Element => {
   const [credentials, signIn] = useCredentials();
@@ -19,7 +19,7 @@ export const SignInScreen = (): React.JSX.Element => {
 
   const handleSubmit = useCallback(async () => {
     setLoading(true);
-    await signIn({apiKey, userEmail, userHmac, serverURL});
+    await signIn({ apiKey, userEmail, userHmac, serverURL });
     setLoading(false);
   }, [signIn, apiKey, userEmail, userHmac, serverURL]);
 
@@ -35,7 +35,7 @@ export const SignInScreen = (): React.JSX.Element => {
           fill="none"
           width="100%"
           height="100"
-          style={{position: 'absolute', top: 20}}>
+          style={{ position: 'absolute', top: 20 }}>
           <G clip-path="url(#clip0_1815_54048)">
             <G clip-path="url(#clip1_1815_54048)">
               <Path
@@ -54,7 +54,7 @@ export const SignInScreen = (): React.JSX.Element => {
           </G>
         </Svg>
         <View>
-          <Box style={{padding: 20}}>
+          <Box style={{ padding: 20 }}>
             <Select
               selectedValue={'ux'}
               minWidth="200"
@@ -75,7 +75,7 @@ export const SignInScreen = (): React.JSX.Element => {
                 }) as (itemValue: string) => void
               }>
               {Object.keys(config).map(key => {
-                return <Select.Item label={key} value={key} />;
+                return <Select.Item key={key} label={key} value={key} />;
               })}
             </Select>
           </Box>
