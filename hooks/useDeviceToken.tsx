@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import { DevicePushToken, getDevicePushTokenAsync, requestPermissionsAsync } from 'expo-notifications'
+import { getIosPushNotificationServiceEnvironmentAsync } from 'expo-application';
 import { Credentials } from './useAuth';
 import { UserClient } from 'magicbell/user-client';
-
-const installationId = () => "development"
+import { Platform } from 'react-native';
 
 const clientWithCredentials = (credentials: Credentials) => new UserClient({
   apiKey: credentials.apiKey,
@@ -12,34 +12,57 @@ const clientWithCredentials = (credentials: Credentials) => new UserClient({
   host: credentials.serverURL,
 })
 
+const tokenPath = Platform.select({
+  ios: "/channels/mobile_push/apns/tokens",
+  android: "/channels/mobile_push/fcm/tokens"
+})!
+
+
+const apnsTokenPayload = async (token: string): any => {
+  const installationId = await getIosPushNotificationServiceEnvironmentAsync() || 'development'
+  return {
+    apns: {
+      device_token: token,
+      installation_id: installationId
+    }
+  }
+}
+
+const fcmTokenPayload = (token: string): any => {
+  return {
+    fcm: {
+      device_token: token
+    }
+  }
+}
+
+
 const unregisterTokenWithCredentials = async (token: string, credentials: Credentials) => {
   console.log('deleting token', token);
   const client = clientWithCredentials(credentials)
-  console.log(client)
   client
     .request({
       method: 'DELETE',
-      path: '/channels/mobile_push/apns/tokens/' + token
+      path: tokenPath + "/" + token
     })
     .catch(err => {
       console.log('delete token error', err);
     });
 }
 
+
 const registerTokenWithCredentials = async (token: string, credentials: Credentials) => {
+  const data = Platform.OS === "ios" ?
+    await apnsTokenPayload(token) :
+    fcmTokenPayload(token)
+
   console.log('posting token', token);
   const client = clientWithCredentials(credentials)
-  console.log(client)
   client
     .request({
       method: 'POST',
-      path: '/channels/mobile_push/apns/tokens',
-      data: {
-        apns: {
-          device_token: token,
-          installation_id: installationId()
-        },
-      },
+      path: tokenPath,
+      data: data,
     })
     .catch(err => {
       console.log('post token error', err);
@@ -51,12 +74,17 @@ export default function useDeviceToken(credentials: Credentials | null | undefin
   const [credentialsUsedToRegister, setCredentialsUsedToRegister] = React.useState<Credentials | null>(null);
 
   useEffect(() => {
-    PushNotificationIOS.requestPermissions().then(permissions => {
+    requestPermissionsAsync().then(permissions => {
       console.log('permissions', permissions);
-    });
-    PushNotificationIOS.addEventListener('register', (t: string) => {
-      setToken(t);
-    });
+    })
+    console.log("asking for token")
+    getDevicePushTokenAsync().then((token: DevicePushToken) => {
+      console.log("got token")
+      if (token.type !== "web") {
+        // no handling for web tokens in this demo
+        setToken(token.data)
+      }
+    })
   }, []);
 
   useEffect(() => {
@@ -76,7 +104,7 @@ export default function useDeviceToken(credentials: Credentials | null | undefin
       unregisterTokenWithCredentials(token, credentialsUsedToRegister)
       setCredentialsUsedToRegister(null)
     }
-    
+
     // We're logged in (after a logout, or after logging in as a new user) and need to register the token
     if (credentials) {
       registerTokenWithCredentials(token, credentials)

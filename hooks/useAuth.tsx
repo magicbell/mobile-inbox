@@ -114,7 +114,6 @@ const getCredentials = async () => {
       path: '/config',
     });
     if (config) {
-      console.log('credentials', config);
       return {apiKey, userEmail, userHmac, serverURL};
     }
   } catch (e) {
