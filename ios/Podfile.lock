@@ -1,18 +1,4 @@
 PODS:
-  - A0Auth0 (3.2.1):
-    - Auth0 (= 2.7.2)
-    - JWTDecode (= 3.1.0)
-    - React-Core
-    - SimpleKeychain (= 1.1.0)
-  - AmplifyRTNCore (1.1.1):
-    - React-Core
-  - AmplifyRTNPushNotification (1.2.29):
-    - AmplifyUtilsNotifications
-    - React-Core
-  - AmplifyUtilsNotifications (1.1.1)
-  - Auth0 (2.7.2):
-    - JWTDecode (~> 3.1)
-    - SimpleKeychain (~> 1.1)
   - boost (1.83.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.74.1)
@@ -21,7 +7,6 @@ PODS:
   - hermes-engine (0.74.1):
     - hermes-engine/Pre-built (= 0.74.1)
   - hermes-engine/Pre-built (0.74.1)
-  - JWTDecode (3.1.0)
   - RCT-Folly (2024.01.01.00):
     - boost
     - DoubleConversion
@@ -1232,14 +1217,10 @@ PODS:
     - Yoga
   - RNSVG (12.5.1):
     - React-Core
-  - SimpleKeychain (1.1.0)
   - SocketRocket (0.7.0)
   - Yoga (0.0.0)
 
 DEPENDENCIES:
-  - A0Auth0 (from `../node_modules/react-native-auth0`)
-  - "AmplifyRTNCore (from `../node_modules/@aws-amplify/react-native`)"
-  - "AmplifyRTNPushNotification (from `../node_modules/@aws-amplify/rtn-push-notification`)"
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
@@ -1306,19 +1287,9 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - AmplifyUtilsNotifications
-    - Auth0
-    - JWTDecode
-    - SimpleKeychain
     - SocketRocket
 
 EXTERNAL SOURCES:
-  A0Auth0:
-    :path: "../node_modules/react-native-auth0"
-  AmplifyRTNCore:
-    :path: "../node_modules/@aws-amplify/react-native"
-  AmplifyRTNPushNotification:
-    :path: "../node_modules/@aws-amplify/rtn-push-notification"
   boost:
     :podspec: "../node_modules/react-native/third-party-podspecs/boost.podspec"
   DoubleConversion:
@@ -1444,18 +1415,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  A0Auth0: 47cb14c87d549b95b92242675ff2198ccd9dcbc5
-  AmplifyRTNCore: 7aabcf40316c2f5c853c1ef73139af3b24a5406b
-  AmplifyRTNPushNotification: 0e757bec18570765eb4ab9e29c4eb3c1501178be
-  AmplifyUtilsNotifications: b30b9e3172ae6c2c7344a64b22de649d4fcf6659
-  Auth0: 28cb24cb19ebd51f0b07751f16d83b59f4019532
   boost: d3f49c53809116a5d38da093a8aa78bf551aed09
   DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
   FBLazyVector: 898d14d17bf19e2435cafd9ea2a1033efe445709
   fmt: 4c2741a687cc09f0634a2e2c72a838b99f1ff120
   glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
   hermes-engine: 16b8530de1b383cdada1476cf52d1b52f0692cbc
-  JWTDecode: 3eaab1e06b6f4dcbdd6716aff09ba4c2104ca8b7
   RCT-Folly: 02617c592a293bd6d418e0a88ff4ee1f88329b47
   RCTDeprecation: efb313d8126259e9294dc4ee0002f44a6f676aba
   RCTRequired: f49ea29cece52aee20db633ae7edc4b271435562
@@ -1510,7 +1475,6 @@ SPEC CHECKSUMS:
   RNReanimated: 7ad0f08a845cb60955ee5d461d2156d7b9707118
   RNScreens: b32a9ff15bea7fcdbe5dff6477bc503f792b1208
   RNSVG: d7d7bc8229af3842c9cfc3a723c815a52cdd1105
-  SimpleKeychain: f8707c8e97b38c6a6e687b17732afc9bcef06439
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: 348f8b538c3ed4423eb58a8e5730feec50bce372
 
