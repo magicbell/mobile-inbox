@@ -19,7 +19,10 @@ end
 
 target 'RNProtoType' do
   use_expo_modules!
-  use_modular_headers!
+
+  pod 'DoubleConversion', podspec: '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec',
+                          modular_headers: true
+
   post_integrate do |installer|
     expo_patch_react_imports!(installer)
   rescue StandardError => e
