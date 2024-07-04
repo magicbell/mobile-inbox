@@ -3,21 +3,21 @@ PODS:
   - DoubleConversion (1.1.6)
   - EXApplication (5.9.1):
     - ExpoModulesCore
-  - EXConstants (16.0.1):
+  - EXConstants (16.0.2):
     - ExpoModulesCore
-  - EXNotifications (0.28.3):
+  - EXNotifications (0.28.9):
     - ExpoModulesCore
-  - Expo (51.0.8):
+  - Expo (51.0.18):
     - ExpoModulesCore
-  - ExpoAsset (10.0.6):
+  - ExpoAsset (10.0.10):
     - ExpoModulesCore
   - ExpoFileSystem (17.0.1):
     - ExpoModulesCore
-  - ExpoFont (12.0.5):
+  - ExpoFont (12.0.7):
     - ExpoModulesCore
   - ExpoKeepAwake (13.0.2):
     - ExpoModulesCore
-  - ExpoModulesCore (1.12.11):
+  - ExpoModulesCore (1.12.18):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -974,9 +974,9 @@ PODS:
   - React-Mapbuffer (0.74.1):
     - glog
     - React-debug
-  - react-native-get-random-values (1.11.0):
+  - react-native-get-random-values (1.10.0):
     - React-Core
-  - react-native-safe-area-context (3.4.1):
+  - react-native-safe-area-context (3.3.2):
     - React-Core
   - React-nativeconfig (0.74.1)
   - React-NativeModulesApple (0.74.1):
@@ -1207,9 +1207,9 @@ PODS:
     - React-logger (= 0.74.1)
     - React-perflogger (= 0.74.1)
     - React-utils (= 0.74.1)
-  - RNCAsyncStorage (1.23.1):
+  - RNCAsyncStorage (1.22.3):
     - React-Core
-  - RNReanimated (3.11.0):
+  - RNReanimated (3.7.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1230,7 +1230,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (3.31.1):
+  - RNScreens (3.29.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1246,7 +1246,6 @@ PODS:
     - React-ImageManager
     - React-NativeModulesApple
     - React-RCTFabric
-    - React-RCTImage
     - React-rendererdebug
     - React-utils
     - ReactCommon/turbomodule/bridging
@@ -1479,14 +1478,14 @@ SPEC CHECKSUMS:
   boost: d3f49c53809116a5d38da093a8aa78bf551aed09
   DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
   EXApplication: c08200c34daca7af7fd76ac4b9d606077410e8ad
-  EXConstants: 9a008dbf262550884e6280dea95b81b51f65ea6f
-  EXNotifications: 43b19f2672dcfa6923484ecce6c65ce3b126a11d
-  Expo: c99f14ca53381d5399b88684c88e20ff7928d3c7
-  ExpoAsset: 9b7433ecc5f1b608ccbb823492e062bde944abd2
+  EXConstants: 409690fbfd5afea964e5e9d6c4eb2c2b59222c59
+  EXNotifications: fcecd5a47fc8448d4f6173490b6fa8ee747f687d
+  Expo: 56b642d0930789fc847dc7f424d2d599dfe59a5e
+  ExpoAsset: 323700f291684f110fb55f0d4022a3362ea9f875
   ExpoFileSystem: 80bfe850b1f9922c16905822ecbf97acd711dc51
-  ExpoFont: 690b76008be824e47907f200cb0764870108dfd1
+  ExpoFont: 43b69559cef3d773db57c7ae7edd3cb0aa0dc610
   ExpoKeepAwake: 3b8815d9dd1d419ee474df004021c69fdd316d08
-  ExpoModulesCore: 4eb2165cde325c8c121d495bb8beb0da9b30c92e
+  ExpoModulesCore: 30e1ed4659356cb9a84e0e5ddf1d090d735973c1
   FBLazyVector: 898d14d17bf19e2435cafd9ea2a1033efe445709
   fmt: 4c2741a687cc09f0634a2e2c72a838b99f1ff120
   glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
@@ -1515,8 +1514,8 @@ SPEC CHECKSUMS:
   React-jsitracing: 233d1a798fe0ff33b8e630b8f00f62c4a8115fbc
   React-logger: 7e7403a2b14c97f847d90763af76b84b152b6fce
   React-Mapbuffer: 11029dcd47c5c9e057a4092ab9c2a8d10a496a33
-  react-native-get-random-values: 21325b2244dfa6b58878f51f9aa42821e7ba3d06
-  react-native-safe-area-context: 9e40fb181dac02619414ba1294d6c2a807056ab9
+  react-native-get-random-values: 384787fd76976f5aec9465aff6fa9e9129af1e74
+  react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   React-nativeconfig: b0073a590774e8b35192fead188a36d1dca23dec
   React-NativeModulesApple: df46ff3e3de5b842b30b4ca8a6caae6d7c8ab09f
   React-perflogger: 3d31e0d1e8ad891e43a09ac70b7b17a79773003a
@@ -1540,12 +1539,12 @@ SPEC CHECKSUMS:
   React-runtimescheduler: e2152ed146b6a35c07386fc2ac4827b27e6aad12
   React-utils: 3285151c9d1e3a28a9586571fc81d521678c196d
   ReactCommon: f42444e384d82ab89184aed5d6f3142748b54768
-  RNCAsyncStorage: 826b603ae9c0f88b5ac4e956801f755109fa4d5c
-  RNReanimated: 7ad0f08a845cb60955ee5d461d2156d7b9707118
-  RNScreens: b32a9ff15bea7fcdbe5dff6477bc503f792b1208
+  RNCAsyncStorage: 10591b9e0a91eaffee14e69b3721009759235125
+  RNReanimated: 1359aa1f7d65fe6d42da0b54301f9ed357f46bb7
+  RNScreens: 23dad53fc9db1da2c93e647ae33fd7ce2bd49d60
   RNSVG: d7d7bc8229af3842c9cfc3a723c815a52cdd1105
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
-  Yoga: 348f8b538c3ed4423eb58a8e5730feec50bce372
+  Yoga: b9a182ab00cf25926e7f79657d08c5d23c2d03b0
 
 PODFILE CHECKSUM: a0f9acd2e95f890c0cabf073f35197f73ed45518
 
