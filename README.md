@@ -6,6 +6,8 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 ## Install Cocoacpods
 
+Please ensure you are using Ruby 3.1, as set in `.tools-version` or you [may run into a Cocoapods issue](https://github.com/expo/expo/issues/20707)
+
 `sudo gem install cocoapods`
 
 Update it
