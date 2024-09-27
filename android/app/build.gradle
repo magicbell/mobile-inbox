@@ -75,9 +75,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.rnprototype"
+    namespace "com.magicbell.mobileinbox"
     defaultConfig {
-        applicationId "com.rnprototype"
+        applicationId "com.magicbell.mobileinbox"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
