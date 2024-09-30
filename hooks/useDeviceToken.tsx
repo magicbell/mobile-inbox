@@ -38,20 +38,6 @@ const fcmTokenPayload = (token: string): any => {
 }
 
 
-const unregisterTokenWithCredentials = async (token: string, credentials: Credentials) => {
-  console.log('deleting token', token);
-  const client = clientWithCredentials(credentials)
-  client
-    .request({
-      method: 'DELETE',
-      path: tokenPath + "/" + token
-    })
-    .catch(err => {
-      console.log('delete token error', err);
-    });
-}
-
-
 const registerTokenWithCredentials = async (token: string, credentials: Credentials) => {
   const data = Platform.OS === "ios" ?
     await apnsTokenPayload(token) :
@@ -69,6 +55,21 @@ const registerTokenWithCredentials = async (token: string, credentials: Credenti
       console.log('post token error', err);
     });
 }
+
+
+const unregisterTokenWithCredentials = async (token: string, credentials: Credentials) => {
+  console.log('deleting token', token);
+  const client = clientWithCredentials(credentials)
+  client
+    .request({
+      method: 'DELETE',
+      path: tokenPath + "/" + token
+    })
+    .catch(err => {
+      console.log('delete token error', err);
+    });
+}
+
 
 export default function useDeviceToken(credentials: Credentials | null | undefined) {
   const [token, setToken] = React.useState<string | null>(null);
