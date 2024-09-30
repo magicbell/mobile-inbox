@@ -1,4 +1,4 @@
-package com.rnprototype
+package com.magicbell.mobileinbox
 import android.content.res.Configuration
 import expo.modules.ApplicationLifecycleDispatcher
 import expo.modules.ReactNativeHostWrapper

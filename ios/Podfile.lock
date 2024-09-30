@@ -5,19 +5,19 @@ PODS:
     - ExpoModulesCore
   - EXConstants (16.0.2):
     - ExpoModulesCore
-  - EXNotifications (0.28.9):
+  - EXNotifications (0.28.17):
     - ExpoModulesCore
-  - Expo (51.0.18):
+  - Expo (51.0.34):
     - ExpoModulesCore
   - ExpoAsset (10.0.10):
     - ExpoModulesCore
   - ExpoFileSystem (17.0.1):
     - ExpoModulesCore
-  - ExpoFont (12.0.7):
+  - ExpoFont (12.0.10):
     - ExpoModulesCore
   - ExpoKeepAwake (13.0.2):
     - ExpoModulesCore
-  - ExpoModulesCore (1.12.18):
+  - ExpoModulesCore (1.12.24):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1276,9 +1276,9 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-get-random-values (1.10.0):
+  - react-native-get-random-values (1.11.0):
     - React-Core
-  - react-native-safe-area-context (3.3.2):
+  - react-native-safe-area-context (4.11.0):
     - React-Core
   - React-nativeconfig (0.75.3)
   - React-NativeModulesApple (0.75.3):
@@ -1540,7 +1540,7 @@ PODS:
     - React-logger (= 0.75.3)
     - React-perflogger (= 0.75.3)
     - React-utils (= 0.75.3)
-  - RNCAsyncStorage (1.22.3):
+  - RNCAsyncStorage (2.0.0):
     - React-Core
   - RNReanimated (3.15.3):
     - DoubleConversion
@@ -1607,7 +1607,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (3.29.0):
+  - RNScreens (3.34.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1622,13 +1622,14 @@ PODS:
     - React-ImageManager
     - React-NativeModulesApple
     - React-RCTFabric
+    - React-RCTImage
     - React-rendererdebug
     - React-utils
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNSVG (12.5.1):
+  - RNSVG (15.7.1):
     - React-Core
   - SocketRocket (0.7.0)
   - Yoga (0.0.0)
@@ -1880,13 +1881,13 @@ SPEC CHECKSUMS:
   DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
   EXApplication: c08200c34daca7af7fd76ac4b9d606077410e8ad
   EXConstants: 409690fbfd5afea964e5e9d6c4eb2c2b59222c59
-  EXNotifications: fcecd5a47fc8448d4f6173490b6fa8ee747f687d
-  Expo: 56b642d0930789fc847dc7f424d2d599dfe59a5e
+  EXNotifications: 1177f1f3acba90ac409ac70d011dc00c75049635
+  Expo: 963ef4ae102e4f4ac114a8510d70127c44adffbf
   ExpoAsset: 323700f291684f110fb55f0d4022a3362ea9f875
   ExpoFileSystem: 80bfe850b1f9922c16905822ecbf97acd711dc51
-  ExpoFont: 43b69559cef3d773db57c7ae7edd3cb0aa0dc610
+  ExpoFont: 00756e6c796d8f7ee8d211e29c8b619e75cbf238
   ExpoKeepAwake: 3b8815d9dd1d419ee474df004021c69fdd316d08
-  ExpoModulesCore: 3961bf5316e7c019de58d1a2780d83d2a0e45a9f
+  ExpoModulesCore: 0f12e4d48d4484886e2940ece708f4dc73d6319c
   FBLazyVector: 7b438dceb9f904bd85ca3c31d64cce32a035472b
   fmt: 4c2741a687cc09f0634a2e2c72a838b99f1ff120
   glog: 69ef571f3de08433d766d614c73a9838a06bf7eb
@@ -1920,8 +1921,8 @@ SPEC CHECKSUMS:
   React-logger: 4072f39df335ca443932e0ccece41fbeb5ca8404
   React-Mapbuffer: 714f2fae68edcabfc332b754e9fbaa8cfc68fdd4
   React-microtasksnativemodule: 4943ad8f99be8ccf5a63329fa7d269816609df9e
-  react-native-get-random-values: 384787fd76976f5aec9465aff6fa9e9129af1e74
-  react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
+  react-native-get-random-values: 21325b2244dfa6b58878f51f9aa42821e7ba3d06
+  react-native-safe-area-context: 851c62c48dce80ccaa5637b6aa5991a1bc36eca9
   React-nativeconfig: 4a9543185905fe41014c06776bf126083795aed9
   React-NativeModulesApple: 0506da59fc40d2e1e6e12a233db5e81c46face27
   React-perflogger: 3bbb82f18e9ac29a1a6931568e99d6305ef4403b
@@ -1948,13 +1949,13 @@ SPEC CHECKSUMS:
   React-utils: f2afa6acd905ca2ce7bb8ffb4a22f7f8a12534e8
   ReactCodegen: ff95a93d5ab5d9b2551571886271478eaa168565
   ReactCommon: 289214026502e6a93484f4a46bcc0efa4f3f2864
-  RNCAsyncStorage: 10591b9e0a91eaffee14e69b3721009759235125
+  RNCAsyncStorage: d35c79ffba52c1013013e16b1fc295aec2feabb6
   RNReanimated: c543567b3482ea54dec3216811d2360e581d35d0
-  RNScreens: ed210360c4737cca8f562628d2ed0c97a0be786a
-  RNSVG: d7d7bc8229af3842c9cfc3a723c815a52cdd1105
+  RNScreens: 19719a9c326e925498ac3b2d35c4e50fe87afc06
+  RNSVG: 4590aa95758149fa27c5c83e54a6a466349a1688
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: 4ef80d96a5534f0e01b3055f17d1e19a9fc61b63
 
-PODFILE CHECKSUM: a0f9acd2e95f890c0cabf073f35197f73ed45518
+PODFILE CHECKSUM: c765a4f9722a9526d25157af5da254950e46fa25
 
 COCOAPODS: 1.15.2
