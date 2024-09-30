@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { DevicePushToken, getDevicePushTokenAsync, requestPermissionsAsync } from 'expo-notifications'
-import { getIosPushNotificationServiceEnvironmentAsync } from 'expo-application';
+import { getIosPushNotificationServiceEnvironmentAsync, applicationId } from 'expo-application';
 import { Credentials } from './useAuth';
 import { UserClient } from 'magicbell/user-client';
 import { Platform } from 'react-native';
@@ -23,7 +23,8 @@ const apnsTokenPayload = async (token: string): any => {
   return {
     apns: {
       device_token: token,
-      installation_id: installationId
+      installation_id: installationId,
+      app_id: applicationId
     }
   }
 }
