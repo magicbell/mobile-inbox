@@ -1954,16 +1954,17 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@magicbell/react-headless@https://pkg.pr.new/@magicbell/react-headless@391.tgz":
-  version "5.0.2"
-  resolved "https://pkg.pr.new/@magicbell/react-headless@391.tgz#d50135a551837b0898b50c10fbbb2327561b653f"
+"@magicbell/react-headless@5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-5.1.0.tgz#4c290333190e3afb45033b4fe3a969d8d6be1f1d"
+  integrity sha512-CYTmm490k+WNXGZ2fyXlKFYUOvxatFNaGICK35Vu/BRxikbNMOIxquzdts90udxuUPWZEUgT4616J2wCnowORg==
   dependencies:
     dayjs "^1.11.10"
     humps "^2.0.1"
     immer "^10.1.1"
     lodash "^4.17.21"
     lodash-es "^4.17.21"
-    magicbell "https://pkg.pr.new/magicbell/magicbell-js/magicbell@d05b043"
+    magicbell "4.1.0"
     mitt "^3.0.1"
     ramda "^0.28.0"
     tiny-invariant "^1.3.1"
@@ -7269,9 +7270,10 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-"magicbell@https://pkg.pr.new/magicbell/magicbell-js/magicbell@d05b043":
+magicbell@4.1.0:
   version "4.1.0"
-  resolved "https://pkg.pr.new/magicbell/magicbell-js/magicbell@d05b043#c4776fc9321ddf9bcd0ccc3b3adb8abb274d93d5"
+  resolved "https://registry.yarnpkg.com/magicbell/-/magicbell-4.1.0.tgz#3a713fa3f2ff2663d56081c9b3c88175c39c0078"
+  integrity sha512-MKcBYFMx1eR7bEbghfuH46gr+0ql+ox3ZtRyDNsnFg7t7Cxv3B25R8EzxHk3ud01dqpaDMVU0o/bv7UEJ7fZAw==
   dependencies:
     "@smeijer/ky" "^1.7.2"
     debug "^4.3.4"
