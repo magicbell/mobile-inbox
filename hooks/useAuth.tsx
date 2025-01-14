@@ -11,6 +11,7 @@ import {MagicBellProvider} from '@magicbell/react-headless';
 import {MIN_LOADING_TIME} from '../screens/Splash';
 import {UserClient} from 'magicbell/user-client';
 import useDeviceToken from './useDeviceToken';
+import useReviewCredentials from './useReviewCredentials';
 
 const storageKey = 'mb';
 
@@ -42,6 +43,7 @@ export default function CredentialsProvider({
 }: {
   children: React.ReactElement;
 }) {
+  const reviewCredentials = useReviewCredentials()
   const [credentials, setCredentials] = useState<
     Credentials | null | undefined
   >(undefined);
@@ -64,6 +66,13 @@ export default function CredentialsProvider({
   }, []);
 
   useEffect(() => {
+    if (reviewCredentials) {
+      storeCredentials(reviewCredentials).then(() => {
+        setCredentials(reviewCredentials);
+      });
+      return;
+    }
+
     Promise.all([
       getCredentials(),
       new Promise(resolve => {
@@ -72,7 +81,7 @@ export default function CredentialsProvider({
     ]).then(([c]) => {
       setCredentials(c);
     });
-  }, []);
+  }, [reviewCredentials]);
 
   if (credentials) {
     console.log('credentials', JSON.stringify(credentials));
@@ -118,16 +127,17 @@ const getCredentials = async () => {
     }
   } catch (e) {
     console.error('Error parsing credentials', e);
+    await deleteCredentials();
     return null;
   }
   return null;
 };
 
-const storeCredentials = (value: Credentials) => {
+const storeCredentials = async (value: Credentials) => {
   const jsonValue = JSON.stringify(value);
-  return AsyncStorage.setItem(storageKey, jsonValue);
+  await AsyncStorage.setItem(storageKey, jsonValue);
 };
 
-const deleteCredentials = () => {
-  return AsyncStorage.removeItem(storageKey);
+const deleteCredentials = async () => {
+  await AsyncStorage.removeItem(storageKey);
 };
