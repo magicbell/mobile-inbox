@@ -12,10 +12,11 @@ import HomeScreen from './screens/Home';
 import { SignInScreen } from './screens/SignIn';
 import { MIN_LOADING_TIME, Splash } from './screens/Splash';
 
-const Stack = createNativeStackNavigator();
 export const navigationRef = createNavigationContainerRef();
 
-export const screenOptions: NativeStackNavigationOptions = {
+const Stack = createNativeStackNavigator();
+
+const screenOptions: NativeStackNavigationOptions = {
   headerStyle: {
     backgroundColor: colors.bg.app,
   },
@@ -67,19 +68,18 @@ export default function Navigator({}: IProps) {
   const [credentials] = useCredentials();
   const isSignedIn = !!credentials;
 
-  const [waitForSplash, setWaitForSpash] = useState(true);
+  const [waitForSplash, setWaitForSplash] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.warn('mount Navigator');
-    let timer = setTimeout(() => setWaitForSpash(false), MIN_LOADING_TIME);
+    let timer = setTimeout(() => setWaitForSplash(false), MIN_LOADING_TIME);
     return () => {
-      console.warn('unmount Navigator');
       clearTimeout(timer);
     };
   }, []);
   useEffect(() => {
-    setIsLoading(typeof credentials === 'undefined' || waitForSplash);
+    const isLoadingCredentials = typeof credentials === 'undefined';
+    setIsLoading(isLoadingCredentials || waitForSplash);
   }, [waitForSplash, credentials]);
 
   return (
