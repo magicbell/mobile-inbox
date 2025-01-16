@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { SafeAreaView, View } from 'react-native';
 import { config, currentConfig, styles } from '../constants';
 import CustomButton from '../components/Button';

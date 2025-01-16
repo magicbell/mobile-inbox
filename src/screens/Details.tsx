@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { colors, styles } from '../constants';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { convertTimestamp } from '../components/Notification';

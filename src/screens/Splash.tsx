@@ -1,4 +1,3 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { Svg, Path, G } from 'react-native-svg';
@@ -16,7 +15,8 @@ const p2length = 133.1626434326172;
 
 export const MIN_LOADING_TIME = 3500;
 
-export const Splash = ({}: NativeStackScreenProps<any>) => {
+interface IProps {}
+export const Splash = ({}: IProps) => {
   const AnimatedPath = Animated.createAnimatedComponent(Path);
   const animatedValue = useSharedValue(0);
   const timingAnimatedValue = useDerivedValue(() =>

@@ -1,4 +1,3 @@
-import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { StyleSheet } from 'react-native';
 
 export const colors = {
@@ -47,18 +46,6 @@ export const colors = {
   },
 };
 
-export const screenOptions: NativeStackNavigationOptions = {
-  headerStyle: {
-    backgroundColor: colors.bg.app,
-  },
-  headerShadowVisible: false,
-  headerTitleStyle: {
-    fontFamily: 'Inter',
-    fontWeight: 'bold',
-  },
-  headerTintColor: '#fff',
-};
-
 export const styles = StyleSheet.create({
   sectionContainer: {
     backgroundColor: colors.bg.app,
@@ -80,7 +67,6 @@ export const styles = StyleSheet.create({
 });
 
 export const routes = {
-  splash: 'Splash',
   signIn: 'SignIn',
   home: 'Home',
   details: 'Details',

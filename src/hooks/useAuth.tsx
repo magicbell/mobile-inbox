@@ -1,8 +1,6 @@
-import React, { useCallback, useEffect, useState, createContext, useContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { MagicBellProvider } from '@magicbell/react-headless';
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
-import { MIN_LOADING_TIME } from '../screens/Splash';
 import { UserClient } from 'magicbell/user-client';
 import useDeviceToken from './useDeviceToken';
 import useReviewCredentials from './useReviewCredentials';
@@ -61,29 +59,10 @@ export default function CredentialsProvider({ children }: { children: React.Reac
       return;
     }
 
-    Promise.all([
-      getCredentials(),
-      new Promise((resolve) => {
-        setTimeout(resolve, MIN_LOADING_TIME);
-      }),
-    ]).then(([c]) => {
+    getCredentials().then((c) => {
       setCredentials(c);
     });
   }, [reviewCredentials]);
-
-  if (credentials) {
-    console.log('credentials', JSON.stringify(credentials));
-    return (
-      <MagicBellProvider
-        apiKey={credentials.apiKey}
-        userEmail={credentials.userEmail}
-        userKey={credentials.userHmac}
-        serverURL={credentials.serverURL}
-      >
-        <CredentialsContext.Provider value={{ credentials, signIn, signOut }}>{children}</CredentialsContext.Provider>
-      </MagicBellProvider>
-    );
-  }
 
   return <CredentialsContext.Provider value={{ credentials, signIn, signOut }}>{children}</CredentialsContext.Provider>;
 }
