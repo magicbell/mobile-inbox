@@ -1,5 +1,5 @@
-import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
-import {StyleSheet} from 'react-native';
+import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
+import { StyleSheet } from 'react-native';
 
 export const colors = {
   bg: {

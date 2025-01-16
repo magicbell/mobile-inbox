@@ -1,15 +1,9 @@
-import React, {
-  useCallback,
-  useEffect,
-  useState,
-  createContext,
-  useContext,
-} from 'react';
+import React, { useCallback, useEffect, useState, createContext, useContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {MagicBellProvider} from '@magicbell/react-headless';
+import { MagicBellProvider } from '@magicbell/react-headless';
 
-import {MIN_LOADING_TIME} from '../screens/Splash';
-import {UserClient} from 'magicbell/user-client';
+import { MIN_LOADING_TIME } from '../screens/Splash';
+import { UserClient } from 'magicbell/user-client';
 import useDeviceToken from './useDeviceToken';
 import useReviewCredentials from './useReviewCredentials';
 
@@ -38,15 +32,9 @@ export const useCredentials = () => {
   return [context.credentials, context.signIn, context.signOut] as const;
 };
 
-export default function CredentialsProvider({
-  children,
-}: {
-  children: React.ReactElement;
-}) {
-  const reviewCredentials = useReviewCredentials()
-  const [credentials, setCredentials] = useState<
-    Credentials | null | undefined
-  >(undefined);
+export default function CredentialsProvider({ children }: { children: React.ReactElement }) {
+  const reviewCredentials = useReviewCredentials();
+  const [credentials, setCredentials] = useState<Credentials | null | undefined>(undefined);
 
   useDeviceToken(credentials);
 
@@ -75,7 +63,7 @@ export default function CredentialsProvider({
 
     Promise.all([
       getCredentials(),
-      new Promise(resolve => {
+      new Promise((resolve) => {
         setTimeout(resolve, MIN_LOADING_TIME);
       }),
     ]).then(([c]) => {
@@ -90,19 +78,14 @@ export default function CredentialsProvider({
         apiKey={credentials.apiKey}
         userEmail={credentials.userEmail}
         userKey={credentials.userHmac}
-        serverURL={credentials.serverURL}>
-        <CredentialsContext.Provider value={{credentials, signIn, signOut}}>
-          {children}
-        </CredentialsContext.Provider>
+        serverURL={credentials.serverURL}
+      >
+        <CredentialsContext.Provider value={{ credentials, signIn, signOut }}>{children}</CredentialsContext.Provider>
       </MagicBellProvider>
     );
   }
 
-  return (
-    <CredentialsContext.Provider value={{credentials, signIn, signOut}}>
-      {children}
-    </CredentialsContext.Provider>
-  );
+  return <CredentialsContext.Provider value={{ credentials, signIn, signOut }}>{children}</CredentialsContext.Provider>;
 }
 
 const getCredentials = async () => {
@@ -111,7 +94,7 @@ const getCredentials = async () => {
     return null;
   }
   try {
-    const {apiKey, userEmail, userHmac, serverURL} = JSON.parse(value);
+    const { apiKey, userEmail, userHmac, serverURL } = JSON.parse(value);
     const client = new UserClient({
       apiKey: apiKey,
       userEmail: userEmail,
@@ -123,7 +106,7 @@ const getCredentials = async () => {
       path: '/config',
     });
     if (config) {
-      return {apiKey, userEmail, userHmac, serverURL};
+      return { apiKey, userEmail, userHmac, serverURL };
     }
   } catch (e) {
     console.error('Error parsing credentials', e);
