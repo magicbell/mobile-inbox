@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import {Splash} from './screens/Splash';
+import { Splash } from './screens/Splash';
 
-import {routes, screenOptions} from './constants';
-import {SignInScreen} from './screens/SignIn';
+import { routes, screenOptions } from './constants';
+import { SignInScreen } from './screens/SignIn';
 import HomeScreen from './screens/Home';
 import CredentialsProvider from './hooks/useAuth';
 import Navigator from './Navigator';
@@ -17,13 +17,7 @@ function App(): React.JSX.Element {
   return (
     <CredentialsProvider>
       <Navigator
-        loading={
-          <Stack.Screen
-            name={routes.splash}
-            options={{headerShown: false}}
-            component={Splash}
-          />
-        }
+        loading={<Stack.Screen name={routes.splash} options={{ headerShown: false }} component={Splash} />}
         signedOut={
           <Stack.Screen
             name={routes.signIn}
@@ -44,11 +38,7 @@ function App(): React.JSX.Element {
                 title: 'Notifications',
               }}
             />
-            <Stack.Screen
-              name={routes.details}
-              component={Details}
-              options={{...screenOptions}}
-            />
+            <Stack.Screen name={routes.details} component={Details} options={{ ...screenOptions }} />
           </>
         }
       />

@@ -1,9 +1,9 @@
-import {IRemoteNotification} from '@magicbell/react-headless';
+import { IRemoteNotification } from '@magicbell/react-headless';
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {navigationRef} from '../Navigator';
-import {CommonActions} from '@react-navigation/native';
-import {colors, routes} from '../constants';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { navigationRef } from '../Navigator';
+import { CommonActions } from '@react-navigation/native';
+import { colors, routes } from '../constants';
 
 interface IProps {
   data: IRemoteNotification;
@@ -81,9 +81,7 @@ export default function Notification(props: IProps) {
   const sentAtString = convertTimestamp(sentAt);
 
   return (
-    <TouchableOpacity
-      onPress={() => handlePress(props.data)}
-      style={styles.container}>
+    <TouchableOpacity onPress={() => handlePress(props.data)} style={styles.container}>
       <Text style={styles.title}>{props.data.title}</Text>
       <View style={styles.body}>
         <Text style={styles.timestamp}>{sentAtString}</Text>

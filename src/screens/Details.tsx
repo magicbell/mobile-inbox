@@ -1,9 +1,9 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import {colors, styles} from '../constants';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {convertTimestamp} from '../components/Notification';
-import {IRemoteNotification} from '@magicbell/react-headless';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { colors, styles } from '../constants';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { convertTimestamp } from '../components/Notification';
+import { IRemoteNotification } from '@magicbell/react-headless';
 
 const s = StyleSheet.create({
   sectionContainer: {

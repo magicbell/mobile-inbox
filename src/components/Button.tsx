@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {ButtonProps, StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {colors} from '../constants';
-import Svg, {Circle} from 'react-native-svg';
+import React, { useEffect, useState } from 'react';
+import { ButtonProps, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { colors } from '../constants';
+import Svg, { Circle } from 'react-native-svg';
 import Animated, {
   interpolate,
   Easing,
@@ -53,11 +53,7 @@ function Spinner() {
   );
 
   const animatedProps = useAnimatedProps(() => ({
-    strokeDashoffset: interpolate(
-      timingAnimatedValue.value,
-      [0, 100],
-      [2 * Math.PI * r, 0],
-    ),
+    strokeDashoffset: interpolate(timingAnimatedValue.value, [0, 100], [2 * Math.PI * r, 0]),
   }));
   useEffect(() => {
     animatedValue.value = 100;
@@ -71,24 +67,22 @@ function Spinner() {
         fill="none"
         stroke="#fff"
         strokeWidth={5}
-        strokeDasharray={2 * Math.PI * r}>
+        strokeDasharray={2 * Math.PI * r}
+      >
         <AnimatedCircle cx="25" cy="25" r={r} animatedProps={animatedProps} />
       </Svg>
     </Animated.View>
   );
 }
 
-export default function Button(props: ButtonProps & {loading: boolean}) {
+export default function Button(props: ButtonProps & { loading: boolean }) {
   return (
     <TouchableOpacity
       {...props}
-      style={{...styles.button, ...(props.loading ? styles.disabled : {})}}
-      disabled={props.loading}>
-      {props.loading ? (
-        <Spinner />
-      ) : (
-        <Text style={styles.text}>{props.title}</Text>
-      )}
+      style={{ ...styles.button, ...(props.loading ? styles.disabled : {}) }}
+      disabled={props.loading}
+    >
+      {props.loading ? <Spinner /> : <Text style={styles.text}>{props.title}</Text>}
     </TouchableOpacity>
   );
 }

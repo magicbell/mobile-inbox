@@ -1,7 +1,7 @@
-import {useLinkingURL} from 'expo-linking';
+import { useLinkingURL } from 'expo-linking';
 
-import {Credentials} from './useAuth';
-import {useMemo} from 'react';
+import { Credentials } from './useAuth';
+import { useMemo } from 'react';
 
 function parseJwtToken(token: string) {
   const base64Url = token.split('.')[1];
@@ -20,7 +20,7 @@ function parseJwtToken(token: string) {
 
 /**
  * Parses a launch URL and if is a review environment connection URL, uses the embedded credentials to sign in to the app.
- * 
+ *
  * ATTENTION: This is only for MagicBell internal use. You should not follow this example in your production app.
  *
  * Example URL:

@@ -1,13 +1,9 @@
-import React, {useEffect} from 'react';
-import {
-  CommonActions,
-  NavigationContainer,
-  createNavigationContainerRef,
-} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React, { useEffect } from 'react';
+import { CommonActions, NavigationContainer, createNavigationContainerRef } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import {useCredentials} from './hooks/useAuth';
-import {routes} from './constants';
+import { useCredentials } from './hooks/useAuth';
+import { routes } from './constants';
 
 interface IProps {
   loading: React.ReactNode;
@@ -26,12 +22,7 @@ export default function Navigator(props: IProps) {
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator initialRouteName={routes.splash}>
-        {isLoading
-          ? props.loading
-          : isSignedIn
-            ? props.signedIn
-            : props.signedOut
-        }
+        {isLoading ? props.loading : isSignedIn ? props.signedIn : props.signedOut}
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,7 +1,7 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React, {useEffect} from 'react';
-import {StyleSheet} from 'react-native';
-import {Svg, Path, G} from 'react-native-svg';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import React, { useEffect } from 'react';
+import { StyleSheet } from 'react-native';
+import { Svg, Path, G } from 'react-native-svg';
 import Animated, {
   useSharedValue,
   withTiming,
@@ -26,39 +26,15 @@ export const Splash = ({}: NativeStackScreenProps<any>) => {
     }),
   );
   const animatedProps1 = useAnimatedProps(() => ({
-    strokeDashoffset: interpolate(
-      timingAnimatedValue.value,
-      [0, 100],
-      [p1length, 0],
-    ),
-    fillOpacity: interpolate(
-      timingAnimatedValue.value,
-      [0, 70, 100],
-      [0, 0, 1],
-    ),
-    strokeOpacity: interpolate(
-      timingAnimatedValue.value,
-      [0, 90, 100],
-      [1, 1, 0],
-    ),
+    strokeDashoffset: interpolate(timingAnimatedValue.value, [0, 100], [p1length, 0]),
+    fillOpacity: interpolate(timingAnimatedValue.value, [0, 70, 100], [0, 0, 1]),
+    strokeOpacity: interpolate(timingAnimatedValue.value, [0, 90, 100], [1, 1, 0]),
   }));
 
   const animatedProps2 = useAnimatedProps(() => ({
-    strokeDashoffset: interpolate(
-      timingAnimatedValue.value,
-      [0, 100],
-      [p2length, 0],
-    ),
-    fillOpacity: interpolate(
-      timingAnimatedValue.value,
-      [0, 70, 100],
-      [0, 0, 1],
-    ),
-    strokeOpacity: interpolate(
-      timingAnimatedValue.value,
-      [0, 90, 100],
-      [1, 1, 0],
-    ),
+    strokeDashoffset: interpolate(timingAnimatedValue.value, [0, 100], [p2length, 0]),
+    fillOpacity: interpolate(timingAnimatedValue.value, [0, 70, 100], [0, 0, 1]),
+    strokeOpacity: interpolate(timingAnimatedValue.value, [0, 90, 100], [1, 1, 0]),
   }));
 
   useEffect(() => {

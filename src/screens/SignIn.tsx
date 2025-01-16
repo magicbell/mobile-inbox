@@ -30,12 +30,7 @@ export const SignInScreen = (): React.JSX.Element => {
   return (
     <NativeBaseProvider>
       <SafeAreaView style={styles.sectionContainer}>
-        <Svg
-          viewBox="0 0 120 121"
-          fill="none"
-          width="100%"
-          height="100"
-          style={{ position: 'absolute', top: 20 }}>
+        <Svg viewBox="0 0 120 121" fill="none" width="100%" height="100" style={{ position: 'absolute', top: 20 }}>
           <G clip-path="url(#clip0_1815_54048)">
             <G clip-path="url(#clip1_1815_54048)">
               <Path
@@ -73,37 +68,18 @@ export const SignInScreen = (): React.JSX.Element => {
                   setUserHmac(c.userHmac);
                   setServerURL(c.serverUrl);
                 }) as (itemValue: string) => void
-              }>
-              {Object.keys(config).map(key => {
+              }
+            >
+              {Object.keys(config).map((key) => {
                 return <Select.Item key={key} label={key} value={key} />;
               })}
             </Select>
           </Box>
-          <TextInput
-            placeholder="Project API Key"
-            value={apiKey}
-            onChangeText={setApiKey}
-          />
-          <TextInput
-            placeholder="User email"
-            value={userEmail}
-            onChangeText={setUserEmail}
-          />
-          <TextInput
-            placeholder="User HMAC"
-            value={userHmac}
-            onChangeText={setUserHmac}
-          />
-          <TextInput
-            placeholder="Server URL"
-            value={serverURL}
-            onChangeText={setServerURL}
-          />
-          <CustomButton
-            title="Sign in"
-            loading={loading}
-            onPress={handleSubmit}
-          />
+          <TextInput placeholder="Project API Key" value={apiKey} onChangeText={setApiKey} />
+          <TextInput placeholder="User email" value={userEmail} onChangeText={setUserEmail} />
+          <TextInput placeholder="User HMAC" value={userHmac} onChangeText={setUserHmac} />
+          <TextInput placeholder="Server URL" value={serverURL} onChangeText={setServerURL} />
+          <CustomButton title="Sign in" loading={loading} onPress={handleSubmit} />
         </View>
       </SafeAreaView>
     </NativeBaseProvider>
