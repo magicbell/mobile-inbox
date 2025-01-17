@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
-import { DevicePushToken, getDevicePushTokenAsync, requestPermissionsAsync } from 'expo-notifications';
 import {
-  getIosPushNotificationServiceEnvironmentAsync,
-  getIosApplicationReleaseTypeAsync,
   applicationId,
   ApplicationReleaseType,
+  getIosApplicationReleaseTypeAsync,
+  getIosPushNotificationServiceEnvironmentAsync,
 } from 'expo-application';
-import { Credentials } from './useAuth';
+import { getDevicePushTokenAsync, requestPermissionsAsync } from 'expo-notifications';
 import { UserClient } from 'magicbell/user-client';
+import React, { useEffect } from 'react';
 import { Platform } from 'react-native';
+import { Credentials } from './useAuth';
 
 const clientWithCredentials = (credentials: Credentials) =>
   new UserClient({
@@ -23,7 +23,7 @@ const tokenPath = Platform.select({
   android: '/channels/mobile_push/fcm/tokens',
 })!;
 
-const apnsTokenPayload = async (token: string): any => {
+const apnsTokenPayload = async (token: string): Promise<any> => {
   const isSimulator = (await getIosApplicationReleaseTypeAsync()) === ApplicationReleaseType.SIMULATOR;
   const installationId =
     (await getIosPushNotificationServiceEnvironmentAsync()) || isSimulator ? 'development' : 'production';
@@ -82,11 +82,11 @@ export default function useDeviceToken(credentials: Credentials | null | undefin
       console.log('permissions', permissions);
     });
     console.log('asking for token');
-    getDevicePushTokenAsync().then((token: DevicePushToken) => {
+    getDevicePushTokenAsync().then((t) => {
       console.log('got token');
-      if (token.type !== 'web') {
+      if (t.type !== 'web') {
         // no handling for web tokens in this demo
-        setToken(token.data);
+        setToken(t.data);
       }
     });
   }, []);
