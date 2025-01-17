@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { SafeAreaView, View } from 'react-native';
 import { config, currentConfig, styles } from '../constants';
 import CustomButton from '../components/Button';
@@ -7,15 +7,27 @@ import Svg, { G, Path } from 'react-native-svg';
 import { Box, CheckIcon, NativeBaseProvider, Select } from 'native-base';
 
 import { useCredentials } from '../hooks/useAuth';
+import useReviewCredentials from '../hooks/useReviewCredentials';
 
 export const SignInScreen = (): React.JSX.Element => {
   const [credentials, signIn] = useCredentials();
+  const reviewCredentials = useReviewCredentials();
 
+  const defaultCredentials = reviewCredentials || currentConfig;
   const [loading, setLoading] = useState(false);
-  const [apiKey, setApiKey] = useState(currentConfig.apiKey);
-  const [userEmail, setUserEmail] = useState(currentConfig.userEmail);
-  const [userHmac, setUserHmac] = useState(currentConfig.userHmac);
-  const [serverURL, setServerURL] = useState(currentConfig.serverUrl);
+  const [serverURL, setServerURL] = useState(defaultCredentials.serverURL);
+  const [apiKey, setApiKey] = useState(defaultCredentials.apiKey);
+  const [userEmail, setUserEmail] = useState(defaultCredentials.userEmail);
+  const [userHmac, setUserHmac] = useState(defaultCredentials.userHmac);
+
+  useEffect(() => {
+    if (reviewCredentials) {
+      setServerURL(reviewCredentials.serverURL);
+      setApiKey(reviewCredentials.apiKey);
+      setUserEmail(reviewCredentials.userEmail);
+      setUserHmac(reviewCredentials.userHmac);
+    }
+  }, [reviewCredentials]);
 
   const handleSubmit = useCallback(async () => {
     setLoading(true);
@@ -66,7 +78,7 @@ export const SignInScreen = (): React.JSX.Element => {
                   setApiKey(c.apiKey);
                   setUserEmail(c.userEmail);
                   setUserHmac(c.userHmac);
-                  setServerURL(c.serverUrl);
+                  setServerURL(c.serverURL);
                 }) as (itemValue: string) => void
               }
             >

@@ -3,7 +3,6 @@ import React, { createContext, useCallback, useContext, useEffect, useState } fr
 
 import { UserClient } from 'magicbell/user-client';
 import useDeviceToken from './useDeviceToken';
-import useReviewCredentials from './useReviewCredentials';
 
 const storageKey = 'mb';
 
@@ -31,7 +30,6 @@ export const useCredentials = () => {
 };
 
 export default function CredentialsProvider({ children }: { children: React.ReactElement }) {
-  const reviewCredentials = useReviewCredentials();
   const [credentials, setCredentials] = useState<Credentials | null | undefined>(undefined);
 
   useDeviceToken(credentials);
@@ -52,17 +50,10 @@ export default function CredentialsProvider({ children }: { children: React.Reac
   }, []);
 
   useEffect(() => {
-    if (reviewCredentials) {
-      storeCredentials(reviewCredentials).then(() => {
-        setCredentials(reviewCredentials);
-      });
-      return;
-    }
-
     getCredentials().then((c) => {
       setCredentials(c);
     });
-  }, [reviewCredentials]);
+  }, []);
 
   return <CredentialsContext.Provider value={{ credentials, signIn, signOut }}>{children}</CredentialsContext.Provider>;
 }
