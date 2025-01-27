@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "Mobile Inbox",
+    "slug": "mobile-inbox",
+    "version": "1.0.0",
+    "android": {
+      "package": "com.magicbell.mobileinbox",
+      "googleServicesFile": "./google-services.json"
+    },
+    "ios": {
+      "bundleIdentifier": "com.magicbell.mobile-inbox",
+      "appleTeamId": "7847W99F5L"
+    },
+    "icon": "./assets/images/icon.png",
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Inter-Black.ttf",
+            "./assets/fonts/Inter-Bold.ttf",
+            "./assets/fonts/Inter-ExtraBold.ttf",
+            "./assets/fonts/Inter-ExtraLight.ttf",
+            "./assets/fonts/Inter-Light.ttf",
+            "./assets/fonts/Inter-Medium.ttf",
+            "./assets/fonts/Inter-Regular.ttf",
+            "./assets/fonts/Inter-SemiBold.ttf",
+            "./assets/fonts/Inter-Thin.ttf"
+          ]
+        }
+      ]
+    ]
+  }
+}
