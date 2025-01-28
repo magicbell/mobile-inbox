@@ -4,6 +4,9 @@
     "slug": "mobile-inbox",
     "version": "1.0.0",
     "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png"
+      },
       "package": "com.magicbell.mobileinbox",
       "googleServicesFile": "./google-services.json"
     },
@@ -12,6 +15,7 @@
       "appleTeamId": "7847W99F5L"
     },
     "icon": "./assets/images/icon.png",
+    "scheme": "x-magicbell-review",
     "plugins": [
       [
         "expo-font",
@@ -27,6 +31,14 @@
             "./assets/fonts/Inter-SemiBold.ttf",
             "./assets/fonts/Inter-Thin.ttf"
           ]
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#1D1F29",
+          "image": "./assets/images/splash.png",
+          "imageWidth": 1024
         }
       ]
     ]

@@ -7,13 +7,16 @@ import URLMemoProvider from './hooks/useURLMemo';
 import Navigator from './Navigator';
 import { useFonts } from './fonts';
 
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync().catch(console.warn);
+SplashScreen.setOptions({
+  fade: true,
+});
 
 function App() {
   let loadedFonts = useFonts();
   useEffect(() => {
     if (loadedFonts) {
-      SplashScreen.hideAsync();
+      SplashScreen.hideAsync().catch(console.warn);
     }
   }, [loadedFonts]);
 
