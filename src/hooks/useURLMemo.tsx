@@ -1,4 +1,4 @@
-import { useURL } from 'expo-linking';
+import { useURL, useLinkingURL } from 'expo-linking';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
@@ -18,11 +18,12 @@ export const useURLMemo = () => {
 
 export default function URLMemoProvider({ children }: { children: React.ReactElement }) {
   const url = useURL();
-  const [lastURL, setLastURL] = useState<string | null>(url);
+  const linkingURL = useLinkingURL();
+  const [lastURL, setLastURL] = useState<string | null>(url || linkingURL);
 
   useEffect(() => {
-    setLastURL(url);
-  }, [url]);
+    setLastURL(url || linkingURL);
+  }, [url, linkingURL]);
 
   return <URLMemoContext.Provider value={{ url: lastURL }}>{children}</URLMemoContext.Provider>;
 }

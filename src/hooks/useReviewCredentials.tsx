@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { Credentials } from './useAuth';
 import { useURLMemo } from './useURLMemo';
+import { Platform } from 'react-native';
 
 /**
  * Parses a launch URL and if is a review environment connection URL, uses the embedded credentials to sign in to the app.
@@ -13,7 +14,7 @@ import { useURLMemo } from './useURLMemo';
  *
  */
 const parseLaunchURLCredentials = (url: URL): Credentials | null => {
-  const serverURL = url.searchParams.get('apiHost');
+  var serverURL = url.searchParams.get('apiHost');
   const apiKey = url.searchParams.get('apiKey');
 
   // TODO: support userExternalID as well
@@ -25,6 +26,15 @@ const parseLaunchURLCredentials = (url: URL): Credentials | null => {
     console.warn('Could not parse credentials from launch URL: ', url.toString());
     return null;
   }
+
+  // Map localhost on Android emulators
+  // https://stackoverflow.com/a/6310592/25724
+  if (Platform.OS === 'android' && serverURL.indexOf('localhost')) {
+    var url = new URL(serverURL);
+    url.hostname = '10.0.2.2';
+    serverURL = url.href;
+  }
+
   const credentials: Credentials = {
     serverURL,
     apiKey,
