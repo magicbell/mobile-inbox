@@ -11,7 +11,8 @@
     "ios:clean": "expo prebuild --clean --platform=ios; expo run:ios --no-build-cache",
     "start": "expo start",
     "test": "jest",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "xcode": "xed ios"
   },
   "jest": {
     "preset": "jest-expo"

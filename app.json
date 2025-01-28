@@ -8,11 +8,20 @@
         "foregroundImage": "./assets/images/adaptive-icon.png"
       },
       "package": "com.magicbell.mobileinbox",
-      "googleServicesFile": "./google-services.json"
+      "googleServicesFile": "./google-services.json",
+      "usesCleartextTraffic": true
     },
     "ios": {
+      "appleTeamId": "7847W99F5L",
       "bundleIdentifier": "com.magicbell.mobile-inbox",
-      "appleTeamId": "7847W99F5L"
+      "NSAppTransportSecurity": {
+        "NSAllowsArbitraryLoads": false,
+        "NSExceptionDomains": {
+          "localhost": {
+            "NSExceptionAllowsInsecureHTTPLoads": true
+          }
+        }
+      }
     },
     "icon": "./assets/images/icon.png",
     "scheme": "x-magicbell-review",
