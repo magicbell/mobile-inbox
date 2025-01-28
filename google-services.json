@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "371921703332",
+    "project_id": "react-native-starter-ee960",
+    "storage_bucket": "react-native-starter-ee960.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371921703332:android:f0cc04373ce55917617131",
+        "android_client_info": {
+          "package_name": "com.magicbell.mobileinbox"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4WB5GlZApHn66O1CM2r_z7z9Qiis_g_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371921703332:android:c46fd837b7edbe43617131",
+        "android_client_info": {
+          "package_name": "com.rnprototype"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4WB5GlZApHn66O1CM2r_z7z9Qiis_g_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -24,7 +24,7 @@ const screenOptions: NativeStackNavigationOptions = {
   },
   headerShadowVisible: false,
   headerTitleStyle: {
-    fontFamily: 'Inter',
+    fontFamily: 'Inter_400Regular',
     fontWeight: 'bold',
   },
   headerTintColor: '#fff',
