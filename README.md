@@ -1,79 +1,132 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# MagicBell Mobile Inbox
 
-# Getting Started
+This repo contains an open source mobile client for the MagicBell API, build in React Native. You can use it as an example project on how to setup a React Native app that integrates with MagicBell notifications and push notifications via APNs and FCM.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+To explore the full feature set of MagicBell, and to dive deeper into the API please refer to the [documentation](https://www.magicbell.com/docs).
 
-## Step 1: Start the Metro Server
+<!-- omit in toc -->
+## TOC
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- [Project Overview](#project-overview)
+- [Prerequisites](#prerequisites)
+- [Starting A Local Development Build](#starting-a-local-development-build)
+- [Building Release Builds](#building-release-builds)
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## Project Overview
+
+This React Native app is set up using Expo, but does not require an Expo account to be build.
+
+Some of the Expo benefits we tap into are:
+- [Continuous Native Generation](https://docs.expo.dev/workflow/continuous-native-generation/): You will notice no `ios` or `android` folders. They are generated at build time, or by calling `npx expo prebuild`, and are based on a template, configuration in `app.json` and [config plugins](https://docs.expo.dev/config-plugins/introduction/) in NPM packages.
+- [`expo-notifications`](https://docs.expo.dev/versions/latest/sdk/notifications/): This is a mature and well maintained library for adding push notification support to a React Native app. Its core functionality is around capturing device tokens and handling the user intend of opening a push notification. It's our current recommendation, but you are free to choose any other library that implements those features, or even build them yourself in native land.
+
+All other Expo dependencies are not directly related to the notifications use case, but we use them to build a nice demo, and to further extend the app beyond its example characteristics towards a useful utility for working with MagicBell.
+
+**Note**: Even though Expo offers web as a target platform, this project currently only focuses on iOS and Android.
+
+## Prerequisites
+
+In order to build the app you will need to have the native tool chains for the platforms you target for: [Xcode](https://developer.apple.com/xcode/) for iOS and [Android Studio](https://developer.android.com/studio) for Android.
+
+You will also need [NodeJS](https://nodejs.org) and [Yarn](https://yarnpkg.com) for obvious reasons.
+
+More details on how to set up a React Native dev environment can be found on [reactnative.dev](https://reactnative.dev/docs/environment-setup).
+
+## Starting A Local Development Build
+
+You can simply get started by running the main dev command, `yarn start`. This will start Metro Bundler and bring up the Expo dev dashboard.
 
 ```bash
-# using npm
-npm start
-
-# OR using Yarn
+# Start Metro
 yarn start
 ```
+<details>
 
-## Step 2: Start your Application
+<summary>You will be greeted with the Expo dashboard</summary>
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+<pre>
+yarn run v1.22.22
+$ expo start -d
+Starting project at /mobile-inbox
+Starting Metro Bundler
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█ ▄▄▄▄▄ █▄▀▀▄▄██▄  █▀▄█▄██ ▀█▀█ ▄▄▄▄▄ █
+█ █   █ ███▄█ ██▄ ▀ ▄█ ▄▀█ █▀▀█ █   █ █
+█ █▄▄▄█ ██▄▀▄▀█▄  ▀▀▄▄▄▄▀ ▄ █ █ █▄▄▄█ █
+█▄▄▄▄▄▄▄█ █ ▀▄▀▄▀ █ █▄█▄█▄▀▄█ █▄▄▄▄▄▄▄█
+█▄▄▀▄▄▀▄██ ▄▄▀ ██   ▀▀██ ▄█ ▀▄▀▄█▀███▄█
+█ █ ▀▄▄▄ █▀█ ▀ █▄ ▀▀▀▄▄ ▄ █▀▄▄ █ █▀▀█▄█
+█  ▀  █▄▄▄ ▄▄▄ ▀ ██▄▄▀█▀ ██▀  ▄▄█▀▄██▄█
+█▄█▄ ▀▀▄███▄ ▄▄█▄ █▄▄ ▄ ███  ▄ █▀▀▀▀  █
+█▀ █▀▄ ▄▄▀  ▀▀▀ ▀ ▀▄ ██▀▄█▄▀ ▄ ▄▀█▄  ▄█
+█  █▀▄ ▄▀▀  ▄▀█▀▄▄██ ▀▄▀ █ ▀▄▀▀█▀▄ █▀ █
+█▀▄▄ ▀█▄▀▄ ▀█▄▄  ▀ ▄  █▄ ▀▀▀ ▄▄▄   ▀▄██
+█▀█▀▀█▀▄ █▀▄█▄█ ▄▀  ▀ ██▄██▀▄██ ▀█▀▀█ █
+█ ▀▀█▄▄▄█▄ ██▀▄▄▀█▀  ▄▄█▀ ▀▀  ▀▄█▀ ▀███
+█ ▄ ▀ ▀▄▄█▄▀█▀▀ ▄▀▄▀ ▀▄▄█▄██▄██▀▀▀  █ █
+█▄█▄███▄▄▀▀█ ▄██▄█▀▄▀██▀▄█ ██ ▄▄▄  ▄▄██
+█ ▄▄▄▄▄ ██▄█▀▄ ▄ ██  █▄▀ ▄ ▀█ █▄█ ▄▄█ █
+█ █   █ █ ▄ ▄▀ █ ▀▄▄ ▀█▄ ▄▀  ▄  ▄▄ █  █
+█ █▄▄▄█ █▀▀▀ ▀ █▄▄▀ ▀ █▀ ██ █▄▀▀▄ ▀▀▀ █
+█▄▄▄▄▄▄▄█▄██▄▄▄█▄▄█▄▄▄▄█▄▄███▄▄▄▄▄███▄█
 
-### For Android
+› Metro waiting on x-magicbell-review://expo-development-client/?url=http%3A%2F%2F192.168.178.22%3A8081
+› Scan the QR code above to open the project in a development build. Learn more
 
-```bash
-# using npm
-npm run android
+› Web is waiting on http://localhost:8081
 
-# OR using Yarn
-yarn android
-```
+› Using development build
+› Press s │ switch to Expo Go
 
-### For iOS
+› Press a │ open Android
+› Press i │ open iOS simulator
+› Press w │ open web
 
-```bash
-# using npm
-npm run ios
+› Press j │ open debugger
+› Press r │ reload app
+› Press m │ toggle menu
+› shift+m │ more tools
+› Press o │ open project code in your editor
 
-# OR using Yarn
-yarn ios
-```
+› Press ? │ show all commands
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+Logs for your project will appear below. Press Ctrl+C to exit.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+</pre>
 
-## Step 3: Modifying your App
+</details>
 
-Now that you have successfully run the app, let's modify it.
+At this point you can use the keyboard shortcuts on the dashboard to build and open apps for iOS via `i` or Android via `a`. This will run pre-build, build and open the app in the corresponding emulator or simulator.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+If you want to launch the app on a specific simulator or even device, you can use the `shift+i`/`shift+a` shortcuts, or start another build process from the terminal while keeping Metro in the background by running `yarn ios` or `yarn android` (both of which support additional parameters that can be inspected by passing `-h`).
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
 
-## Congratulations! :tada:
+## Building Release Builds
 
-You've successfully run and modified your React Native App. :partying_face:
+Releases can be build from the native platform projects using Xcode or Android Studio. The first step is to run the native generation using `npx expo prebuild`. From there on follow the platform specific steps to build and submit. While Expo provides [a full guide](https://docs.expo.dev/guides/local-app-production/) to follow, the basic steps for iOS are laid out next:
 
-### Now what?
+1. Open the project in Xcode via `xed ios`
+2. Make sure to connect your Apple ID in the Xcode settings under Account. That Apple ID should be a member of a development team, eligible to sign the app.
+3. Build an archived build using Archive in the Product menu. This process will take a minute but will at the end open the Organizer.
+4. From the Organizer you can select "Distribute App" and select your distribution target, and proceed to the form.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+After this the app will be packaged and distributed to TestFlight, from where it will be available to your testers.
 
 # Troubleshooting
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+The React Native community offers many resources that will help you navigate the most common issues:
 
-# Learn More
+- [React Native Troubleshooting Guide](https://reactnative.dev/docs/troubleshooting)
+- [Expo Troubleshooting Guide](https://docs.expo.dev/router/reference/troubleshooting/)
 
-To learn more about React Native, take a look at the following resources:
+MagicBells own resources are also at your availability:
+- The [MagicBell documentation](https://magicbell.com/docs) is a good place to start
+- The [MagicBell community](https://magicbell.com/discussions) is often the fastest way to get help
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+If you run into any other kind of problem, please [open an issue](./issues/new).
+
+# License
+
+This project is build by [MagicBell, Inc.](https://www.magicbell.com) and it's [contributors](./graphs/contributors).
+
+It is released under the [MIT license](./LICENSE).
