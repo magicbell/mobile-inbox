@@ -123,7 +123,7 @@ MagicBells own resources are also at your availability:
 - The [MagicBell documentation](https://magicbell.com/docs) is a good place to start
 - The [MagicBell community](https://magicbell.com/discussions) is often the fastest way to get help
 
-If you run into any other kind of problem, please [open an issue](./issues/new).
+If you run into any other kind of problem, please [open an issue](https://github.com/magicbell/mobile-inbox/issues/new).
 
 # License
 
