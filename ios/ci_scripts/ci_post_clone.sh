@@ -7,7 +7,7 @@ echo "Running ci_post_clone.sh"
 cd ../../
 
 # install node and cocoapods
-brew install node cocoapods
+HOMEBREW_NO_AUTO_UPDATE=1 brew install node cocoapods
 npm install
 
-npx expo prebuild
+npx expo prebuild --platform=ios
