@@ -11,6 +11,7 @@ To explore the full feature set of MagicBell, and to dive deeper into the API pl
 - [Prerequisites](#prerequisites)
 - [Starting A Local Development Build](#starting-a-local-development-build)
 - [Building Release Builds](#building-release-builds)
+  - [CI on Xcode Cloud](#ci-on-xcode-cloud)
 
 ## Project Overview
 
@@ -111,6 +112,14 @@ Releases can be build from the native platform projects using Xcode or Android S
 4. From the Organizer you can select "Distribute App" and select your distribution target, and proceed to the form.
 
 After this the app will be packaged and distributed to TestFlight, from where it will be available to your testers.
+
+
+### CI on Xcode Cloud
+
+The project is also set up with Xcode Cloud to trigger TestFlight builds on changes to `main`.
+
+The workflows can be managed in AppStore Connect, by following this [link](https://appstoreconnect.apple.com/teams/1b3ae669-5b2b-4111-8642-fb78ebde9fd0/apps/6739590830/ci).
+
 
 # Troubleshooting
 
