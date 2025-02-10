@@ -1,0 +1,12 @@
+diff --git a/node_modules/getenv/index.js b/node_modules/getenv/index.js
+index 5e83c8f..8a6092f 100644
+--- a/node_modules/getenv/index.js
++++ b/node_modules/getenv/index.js
+@@ -54,6 +54,7 @@ const convert = {
+     return +value;
+   },
+   bool: function(value) {
++    value = (value || '').toLowerCase()
+     const isBool = value === 'true' || value === 'false';
+     if (!isBool) {
+       throw new Error('GetEnv.NoBoolean: ' + value + ' is not a boolean.');
