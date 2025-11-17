@@ -1,6 +1,6 @@
 # MagicBell Mobile Inbox
 
-This repo contains an open source mobile client for the MagicBell API, build in React Native. You can use it as an example project on how to setup a React Native app that integrates with MagicBell notifications and push notifications via APNs and FCM.
+This repo contains an open source mobile client for the MagicBell API, built in React Native. You can use it as an example project on how to setup a React Native app that integrates with MagicBell notifications and push notifications via APNs and FCM.
 
 To explore the full feature set of MagicBell, and to dive deeper into the API please refer to the [documentation](https://www.magicbell.com/docs).
 
@@ -32,6 +32,8 @@ In order to build the app you will need to have the native tool chains for the p
 You will also need [NodeJS](https://nodejs.org) and [Yarn](https://yarnpkg.com) for obvious reasons.
 
 More details on how to set up a React Native dev environment can be found on [reactnative.dev](https://reactnative.dev/docs/environment-setup).
+
+Install the dependencies by running `yarn`.
 
 ## Starting A Local Development Build
 
