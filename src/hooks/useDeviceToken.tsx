@@ -5,7 +5,7 @@ import {
   getIosPushNotificationServiceEnvironmentAsync,
 } from 'expo-application';
 import { getDevicePushTokenAsync, requestPermissionsAsync } from 'expo-notifications';
-import { ApnsTokenPayload, ApnsTokenPayloadInstallationId, Client } from 'magicbell-js/user-client';
+import { ApnsTokenPayload, ApnsTokenPayloadInstallationId, Client, FcmTokenPayload } from 'magicbell-js/user-client';
 import React, { useEffect } from 'react';
 import { Platform } from 'react-native';
 import { Credentials } from './useAuth';
@@ -15,26 +15,24 @@ const clientWithCredentials = (credentials: Credentials) =>
     token: credentials.userJWT,
   });
 
-const apnsTokenPayload = async (token: string): Promise<any> => {
+const apnsTokenPayload = async (token: string): Promise<ApnsTokenPayload> => {
   const isSimulator = (await getIosApplicationReleaseTypeAsync()) === ApplicationReleaseType.SIMULATOR;
   const installationId =
     (await getIosPushNotificationServiceEnvironmentAsync()) || isSimulator
       ? ApnsTokenPayloadInstallationId.DEVELOPMENT
       : ApnsTokenPayloadInstallationId.PRODUCTION;
+
+  const appId = applicationId ?? undefined;
   return {
-    apns: {
-      deviceToken: token,
-      installationId,
-      appId: applicationId,
-    },
+    deviceToken: token,
+    installationId,
+    appId,
   };
 };
 
-const fcmTokenPayload = (token: string): any => {
+const fcmTokenPayload = (token: string): FcmTokenPayload => {
   return {
-    fcm: {
-      deviceToken: token,
-    },
+    deviceToken: token,
   };
 };
 
