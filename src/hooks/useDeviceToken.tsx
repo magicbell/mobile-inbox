@@ -5,33 +5,27 @@ import {
   getIosPushNotificationServiceEnvironmentAsync,
 } from 'expo-application';
 import { getDevicePushTokenAsync, requestPermissionsAsync } from 'expo-notifications';
-import { UserClient } from 'magicbell/user-client';
+import { ApnsTokenPayload, ApnsTokenPayloadInstallationId, Client } from 'magicbell-js/user-client';
 import React, { useEffect } from 'react';
 import { Platform } from 'react-native';
 import { Credentials } from './useAuth';
 
 const clientWithCredentials = (credentials: Credentials) =>
-  new UserClient({
-    apiKey: credentials.apiKey,
-    userEmail: credentials.userEmail,
-    userHmac: credentials.userHmac,
-    host: credentials.serverURL,
+  new Client({
+    token: credentials.userJWT,
   });
-
-const tokenPath = Platform.select({
-  ios: '/channels/mobile_push/apns/tokens',
-  android: '/channels/mobile_push/fcm/tokens',
-})!;
 
 const apnsTokenPayload = async (token: string): Promise<any> => {
   const isSimulator = (await getIosApplicationReleaseTypeAsync()) === ApplicationReleaseType.SIMULATOR;
   const installationId =
-    (await getIosPushNotificationServiceEnvironmentAsync()) || isSimulator ? 'development' : 'production';
+    (await getIosPushNotificationServiceEnvironmentAsync()) || isSimulator
+      ? ApnsTokenPayloadInstallationId.DEVELOPMENT
+      : ApnsTokenPayloadInstallationId.PRODUCTION;
   return {
     apns: {
-      device_token: token,
-      installation_id: installationId,
-      app_id: applicationId,
+      deviceToken: token,
+      installationId,
+      appId: applicationId,
     },
   };
 };
@@ -39,7 +33,7 @@ const apnsTokenPayload = async (token: string): Promise<any> => {
 const fcmTokenPayload = (token: string): any => {
   return {
     fcm: {
-      device_token: token,
+      deviceToken: token,
     },
   };
 };
@@ -49,28 +43,25 @@ const registerTokenWithCredentials = async (token: string, credentials: Credenti
 
   console.log('posting token', token);
   const client = clientWithCredentials(credentials);
-  client
-    .request({
-      method: 'POST',
-      path: tokenPath,
-      data: data,
-    })
-    .catch((err) => {
-      console.log('post token error', err);
-    });
+
+  switch (Platform.OS) {
+    case 'ios':
+      client.channels.saveApnsToken(data);
+    case 'android':
+      client.channels.saveFcmToken(data);
+  }
 };
 
 const unregisterTokenWithCredentials = async (token: string, credentials: Credentials) => {
   console.log('deleting token', token);
   const client = clientWithCredentials(credentials);
-  client
-    .request({
-      method: 'DELETE',
-      path: tokenPath + '/' + token,
-    })
-    .catch((err) => {
-      console.log('delete token error', err);
-    });
+
+  switch (Platform.OS) {
+    case 'ios':
+      client.channels.deleteApnsToken(token);
+    case 'android':
+      client.channels.deleteFcmToken(token);
+  }
 };
 
 export default function useDeviceToken(credentials: Credentials | null | undefined) {

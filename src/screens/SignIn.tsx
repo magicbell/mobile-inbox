@@ -16,24 +16,20 @@ export const SignInScreen = (): React.JSX.Element => {
   const defaultCredentials = reviewCredentials || currentConfig;
   const [loading, setLoading] = useState(false);
   const [serverURL, setServerURL] = useState(defaultCredentials.serverURL);
-  const [apiKey, setApiKey] = useState(defaultCredentials.apiKey);
-  const [userEmail, setUserEmail] = useState(defaultCredentials.userEmail);
-  const [secretKey, setSecretKey] = useState(defaultCredentials.secretKey);
+  const [userJWT, setUserJWT] = useState(defaultCredentials.userJWT);
 
   useEffect(() => {
     if (reviewCredentials) {
       setServerURL(reviewCredentials.serverURL);
-      setApiKey(reviewCredentials.apiKey);
-      setUserEmail(reviewCredentials.userEmail);
-      setSecretKey(reviewCredentials.secretKey);
+      setUserJWT(reviewCredentials.userJWT);
     }
   }, [reviewCredentials]);
 
   const handleSubmit = useCallback(async () => {
     setLoading(true);
-    await signIn({ apiKey, userEmail, secretKey, serverURL });
+    await signIn({ serverURL, userJWT });
     setLoading(false);
-  }, [signIn, apiKey, userEmail, secretKey, serverURL]);
+  }, [signIn, userJWT, serverURL]);
 
   if (credentials) {
     throw new Error('User is already signed in');
@@ -75,9 +71,6 @@ export const SignInScreen = (): React.JSX.Element => {
               onValueChange={
                 ((itemValue: keyof typeof config) => {
                   const c = config[itemValue];
-                  setApiKey(c.apiKey);
-                  setUserEmail(c.userEmail);
-                  setSecretKey(c.secretKey);
                   setServerURL(c.serverURL);
                 }) as (itemValue: string) => void
               }
@@ -87,9 +80,7 @@ export const SignInScreen = (): React.JSX.Element => {
               })}
             </Select>
           </Box>
-          <TextInput placeholder="Project API Key" value={apiKey} onChangeText={setApiKey} />
-          <TextInput placeholder="Project Secret Key" value={secretKey} onChangeText={setSecretKey} />
-          <TextInput placeholder="User email" value={userEmail} onChangeText={setUserEmail} />
+          <TextInput placeholder="User JWT" value={userJWT} onChangeText={setUserJWT} />
           <TextInput placeholder="Server URL" value={serverURL} onChangeText={setServerURL} />
           <CustomButton title="Sign in" loading={loading} onPress={handleSubmit} />
         </View>

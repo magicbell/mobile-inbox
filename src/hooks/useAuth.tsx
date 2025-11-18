@@ -1,17 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import * as Crypto from 'expo-crypto';
 
-import { Client } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/user-client';
 import useDeviceToken from './useDeviceToken';
 
 const storageKey = 'mb';
 
+// TODO: refactor to remove other Credientials fields except userJWT and serverURL
 export type Credentials = {
-  apiKey: string;
-  secretKey: string;
-  userEmail: string;
   serverURL: string;
+  userJWT: string;
 };
 
 type CredentialsContextType = {
@@ -65,22 +63,16 @@ const getCredentials = async () => {
     return null;
   }
   try {
-    const { apiKey, userEmail, secretKey, serverURL } = JSON.parse(value);
-
-    const payload = {
-      user_email: userEmail,
-      user_external_id: null,
-      api_key: apiKey,
-    };
-
-    const token = await createJWT(payload, secretKey);
+    const { apiKey, secretKey, userEmail, serverURL, userJWT } = JSON.parse(value);
 
     const client = new Client({
-      token,
+      token: userJWT,
     });
 
+    // TODO: Verify bad credentials cannot be used
+    // Use the client to check the credentials are valid
     if (client.config) {
-      return { apiKey, userEmail, secretKey, serverURL };
+      return { apiKey, userEmail, secretKey, serverURL, userJWT };
     }
   } catch (e) {
     console.error('Error parsing credentials', e);
@@ -97,39 +89,4 @@ const storeCredentials = async (value: Credentials) => {
 
 const deleteCredentials = async () => {
   await AsyncStorage.removeItem(storageKey);
-};
-
-// Helper function to convert string to base64url encoding
-const base64UrlEncode = (str: string): string => {
-  const base64 = btoa(str);
-  return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
-};
-
-// Create JWT using expo-crypto for HMAC signing
-const createJWT = async (payload: object, secret: string): Promise<string> => {
-  const header = {
-    alg: 'HS256',
-    typ: 'JWT',
-  };
-
-  const now = Math.floor(Date.now() / 1000);
-  const tokenPayload = {
-    ...payload,
-    iat: now,
-    exp: now + 86400, // 1 day
-  };
-
-  const encodedHeader = base64UrlEncode(JSON.stringify(header));
-  const encodedPayload = base64UrlEncode(JSON.stringify(tokenPayload));
-  const message = `${encodedHeader}.${encodedPayload}`;
-
-  // Create HMAC signature using expo-crypto
-  const signature = await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, secret + message);
-
-  // Convert hex signature to base64url
-  const signatureBytes = signature.match(/.{2}/g)?.map((byte: string) => parseInt(byte, 16)) || [];
-  const signatureStr = String.fromCharCode(...signatureBytes);
-  const encodedSignature = base64UrlEncode(signatureStr);
-
-  return `${message}.${encodedSignature}`;
 };

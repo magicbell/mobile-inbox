@@ -1,4 +1,4 @@
-import { IRemoteNotification } from '@magicbell/react-headless';
+import { Notification as NotificationType } from 'magicbell-js/user-client';
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { navigationRef } from '../Navigator';
@@ -6,7 +6,7 @@ import { CommonActions } from '@react-navigation/native';
 import { colors, routes } from '../constants';
 
 interface IProps {
-  data: IRemoteNotification;
+  data: NotificationType;
 }
 
 const styles = StyleSheet.create({
@@ -76,8 +76,8 @@ export default function Notification(props: IProps) {
     }
   };
 
-  // convert sentAt timestamp to a human-readable format such as "2 hours ago"
-  const sentAt = new Date(+props.data.sentAt! * 1000);
+  // convert createdAt timestamp to a human-readable format such as "2 hours ago"
+  const sentAt = new Date(props.data.createdAt);
   const sentAtString = convertTimestamp(sentAt);
 
   return (

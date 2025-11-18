@@ -10,19 +10,15 @@ import { Platform } from 'react-native';
  * ATTENTION: This is only for MagicBell internal use. You should not follow this example in your production app.
  *
  * Example URL:
- *   x-magicbell-review://connect?apiHost=[...]&apiKey=[...]&userEmail=[...]&userHmac=[...]
+ *   x-magicbell-review://connect?apiHost=[...]&apiKey=[...]&secretKey=[...]&userEmail=[...]&userJWT=[...]
  *
  */
 const parseLaunchURLCredentials = (url: URL): Credentials | null => {
   var serverURL = url.searchParams.get('apiHost');
-  const apiKey = url.searchParams.get('apiKey');
 
-  // TODO: support userExternalID as well
-  const userEmail = url.searchParams.get('userEmail');
+  const userJWT = url.searchParams.get('userJWT');
 
-  const userHmac = url.searchParams.get('userHmac');
-
-  if (!serverURL || !apiKey || !userEmail || !userHmac) {
+  if (!serverURL || !userJWT) {
     console.warn('Could not parse credentials from launch URL: ', url.toString());
     return null;
   }
@@ -37,9 +33,7 @@ const parseLaunchURLCredentials = (url: URL): Credentials | null => {
 
   const credentials: Credentials = {
     serverURL,
-    apiKey,
-    userHmac,
-    userEmail,
+    userJWT,
   };
   return credentials;
 };

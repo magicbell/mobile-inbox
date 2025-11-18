@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { colors, styles } from '../constants';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { convertTimestamp } from '../components/Notification';
-import { IRemoteNotification } from '@magicbell/react-headless';
+import { Notification } from 'magicbell-js/user-client';
 
 const s = StyleSheet.create({
   sectionContainer: {
@@ -43,8 +43,8 @@ const s = StyleSheet.create({
 
 export default function Details(props: NativeStackScreenProps<any>) {
   console.log('props', props.route.params);
-  const params = props.route.params as IRemoteNotification;
-  const sentAtString = convertTimestamp(new Date(params!.sentAt * 1000));
+  const params = props.route.params as Notification;
+  const sentAtString = convertTimestamp(new Date(params!.createdAt));
   return (
     <View style={s.sectionContainer}>
       <View style={s.header}>

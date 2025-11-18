@@ -1,5 +1,3 @@
-import PushNotificationIOS, { PushNotification } from '@react-native-community/push-notification-ios';
-
 import { navigationRef } from '../Navigator';
 import { useEffect } from 'react';
 import { CommonActions } from '@react-navigation/native';
