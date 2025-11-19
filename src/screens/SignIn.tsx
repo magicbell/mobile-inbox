@@ -72,6 +72,7 @@ export const SignInScreen = (): React.JSX.Element => {
                 ((itemValue: keyof typeof config) => {
                   const c = config[itemValue];
                   setServerURL(c.serverURL);
+                  setUserJWT(c.userJWT);
                 }) as (itemValue: string) => void
               }
             >

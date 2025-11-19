@@ -10,7 +10,7 @@ import { Platform } from 'react-native';
  * ATTENTION: This is only for MagicBell internal use. You should not follow this example in your production app.
  *
  * Example URL:
- *   x-magicbell-review://connect?apiHost=[...]&apiKey=[...]&secretKey=[...]&userEmail=[...]&userJWT=[...]
+ *   x-magicbell-review://connect?apiHost=[...]&userJWT=[...]
  *
  */
 const parseLaunchURLCredentials = (url: URL): Credentials | null => {

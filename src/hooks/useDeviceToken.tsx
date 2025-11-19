@@ -13,6 +13,7 @@ import { Credentials } from './useAuth';
 const clientWithCredentials = (credentials: Credentials) =>
   new Client({
     token: credentials.userJWT,
+    baseUrl: credentials.serverURL,
   });
 
 const apnsTokenPayload = async (token: string): Promise<ApnsTokenPayload> => {

@@ -6,7 +6,6 @@ import useDeviceToken from './useDeviceToken';
 
 const storageKey = 'mb';
 
-// TODO: refactor to remove other Credientials fields except userJWT and serverURL
 export type Credentials = {
   serverURL: string;
   userJWT: string;
@@ -63,16 +62,17 @@ const getCredentials = async () => {
     return null;
   }
   try {
-    const { apiKey, secretKey, userEmail, serverURL, userJWT } = JSON.parse(value);
+    const { serverURL, userJWT } = JSON.parse(value);
 
     const client = new Client({
       token: userJWT,
+      baseUrl: serverURL,
     });
 
     // TODO: Verify bad credentials cannot be used
     // Use the client to check the credentials are valid
     if (client.config) {
-      return { apiKey, userEmail, secretKey, serverURL, userJWT };
+      return { serverURL, userJWT };
     }
   } catch (e) {
     console.error('Error parsing credentials', e);

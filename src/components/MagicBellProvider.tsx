@@ -1,11 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useCallback,
-  useMemo,
-  ReactNode,
-} from 'react';
+import React, { createContext, useContext, useState, useCallback, useMemo, ReactNode } from 'react';
 import { Client, Notification } from 'magicbell-js/user-client';
 import { useCredentials } from '../hooks/useAuth';
 
@@ -28,9 +21,7 @@ type MagicBellContextType = {
   archiveNotification: (notificationId: string) => Promise<void>;
 };
 
-const MagicBellContext = createContext<MagicBellContextType | undefined>(
-  undefined
-);
+const MagicBellContext = createContext<MagicBellContextType | undefined>(undefined);
 
 export const useMagicBell = () => {
   const context = useContext(MagicBellContext);
@@ -57,6 +48,7 @@ export default function MagicBellProvider({ children }: MagicBellProviderProps) 
     }
     return new Client({
       token: credentials.userJWT,
+      baseUrl: credentials.serverURL,
     });
   }, [credentials?.userJWT]);
 
@@ -96,7 +88,7 @@ export default function MagicBellProvider({ children }: MagicBellProviderProps) 
         setIsLoading(false);
       }
     },
-    [client]
+    [client],
   );
 
   const refreshNotifications = useCallback(async () => {
@@ -113,17 +105,15 @@ export default function MagicBellProvider({ children }: MagicBellProviderProps) 
         // Optimistically update local state
         setNotifications((prev) =>
           prev.map((notification) =>
-            notification.id === notificationId
-              ? { ...notification, readAt: new Date().toISOString() }
-              : notification
-          )
+            notification.id === notificationId ? { ...notification, readAt: new Date().toISOString() } : notification,
+          ),
         );
       } catch (err) {
         console.error('Error marking notification as read:', err);
         throw err;
       }
     },
-    [client]
+    [client],
   );
 
   const markAsUnread = useCallback(
@@ -136,17 +126,15 @@ export default function MagicBellProvider({ children }: MagicBellProviderProps) 
         // Optimistically update local state
         setNotifications((prev) =>
           prev.map((notification) =>
-            notification.id === notificationId
-              ? { ...notification, readAt: null }
-              : notification
-          )
+            notification.id === notificationId ? { ...notification, readAt: null } : notification,
+          ),
         );
       } catch (err) {
         console.error('Error marking notification as unread:', err);
         throw err;
       }
     },
-    [client]
+    [client],
   );
 
   const archiveNotification = useCallback(
@@ -157,15 +145,13 @@ export default function MagicBellProvider({ children }: MagicBellProviderProps) 
         await client.notifications.archiveNotification(notificationId);
 
         // Optimistically update local state
-        setNotifications((prev) =>
-          prev.filter((notification) => notification.id !== notificationId)
-        );
+        setNotifications((prev) => prev.filter((notification) => notification.id !== notificationId));
       } catch (err) {
         console.error('Error archiving notification:', err);
         throw err;
       }
     },
-    [client]
+    [client],
   );
 
   const value = useMemo(
@@ -190,12 +176,8 @@ export default function MagicBellProvider({ children }: MagicBellProviderProps) 
       markAsRead,
       markAsUnread,
       archiveNotification,
-    ]
+    ],
   );
 
-  return (
-    <MagicBellContext.Provider value={value}>
-      {children}
-    </MagicBellContext.Provider>
-  );
+  return <MagicBellContext.Provider value={value}>{children}</MagicBellContext.Provider>;
 }
