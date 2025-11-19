@@ -2,19 +2,21 @@ import React, { createContext, useContext, useState, useCallback, useMemo, React
 import { Client, Notification } from 'magicbell-js/user-client';
 import { useCredentials } from '../hooks/useAuth';
 
+type ListNotificationsParams = {
+  limit?: number;
+  startingAfter?: string;
+  endingBefore?: string;
+  status?: string;
+  category?: string;
+  topic?: string;
+};
+
 type MagicBellContextType = {
   client: Client | null;
   notifications: Notification[];
   isLoading: boolean;
   error: Error | null;
-  fetchNotifications: (params?: {
-    limit?: number;
-    startingAfter?: string;
-    endingBefore?: string;
-    status?: string;
-    category?: string;
-    topic?: string;
-  }) => Promise<void>;
+  fetchNotifications: (params?: ListNotificationsParams) => Promise<void>;
   refreshNotifications: () => Promise<void>;
   markAsRead: (notificationId: string) => Promise<void>;
   markAsUnread: (notificationId: string) => Promise<void>;
@@ -41,7 +43,6 @@ export default function MagicBellProvider({ children }: MagicBellProviderProps) 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  // Create client with JWT token
   const client = useMemo(() => {
     if (!credentials?.userJWT) {
       return null;
@@ -50,17 +51,10 @@ export default function MagicBellProvider({ children }: MagicBellProviderProps) 
       token: credentials.userJWT,
       baseUrl: credentials.serverURL,
     });
-  }, [credentials?.userJWT]);
+  }, [credentials?.userJWT, credentials?.serverURL]);
 
   const fetchNotifications = useCallback(
-    async (params?: {
-      limit?: number;
-      startingAfter?: string;
-      endingBefore?: string;
-      status?: string;
-      category?: string;
-      topic?: string;
-    }) => {
+    async (params?: ListNotificationsParams) => {
       if (!client) {
         setError(new Error('MagicBell client not initialized'));
         return;
@@ -75,14 +69,11 @@ export default function MagicBellProvider({ children }: MagicBellProviderProps) 
           ...params,
         });
 
-        // The SDK returns HttpResponse<NotificationCollection>
-        // NotificationCollection has an optional data field
         setNotifications(response.data?.data || []);
       } catch (err) {
         const error = err instanceof Error ? err : new Error('Failed to fetch notifications');
         setError(error);
         console.error('Error fetching notifications:', error);
-        // Ensure notifications is set to empty array on error
         setNotifications([]);
       } finally {
         setIsLoading(false);
@@ -102,7 +93,6 @@ export default function MagicBellProvider({ children }: MagicBellProviderProps) 
       try {
         await client.notifications.markNotificationRead(notificationId);
 
-        // Optimistically update local state
         setNotifications((prev) =>
           prev.map((notification) =>
             notification.id === notificationId ? { ...notification, readAt: new Date().toISOString() } : notification,
@@ -123,7 +113,6 @@ export default function MagicBellProvider({ children }: MagicBellProviderProps) 
       try {
         await client.notifications.markNotificationUnread(notificationId);
 
-        // Optimistically update local state
         setNotifications((prev) =>
           prev.map((notification) =>
             notification.id === notificationId ? { ...notification, readAt: null } : notification,
@@ -144,7 +133,6 @@ export default function MagicBellProvider({ children }: MagicBellProviderProps) 
       try {
         await client.notifications.archiveNotification(notificationId);
 
-        // Optimistically update local state
         setNotifications((prev) => prev.filter((notification) => notification.id !== notificationId));
       } catch (err) {
         console.error('Error archiving notification:', err);
