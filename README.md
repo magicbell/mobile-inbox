@@ -118,6 +118,8 @@ yarn android:clean
 
 The command will do a clean Android build and launch the Android app in an emulator. 
 
+For authentication, you will need a MagicBell userJWT, you can [generate it using your MagicBell API Key and the external ID of the user](https://www.magicbell.com/docs/api/authentication/user) you want to send notifications to. 
+
 To test if you are receiving notifications correctly, you can use the [FCM Test](https://www.magicbell.com/test/fcm).
 
 You will need an Admin SDK private key, you can get it from your firebase console by going to the Project Settings by clicking on the gear button on the left sidebar. Then going to Service Accounts and clicking the `Generate new private key`, it will save a JSON file to your machine that you can then upload to the [MagicBell FCM Test](https://www.magicbell.com/test/fcm) page.
