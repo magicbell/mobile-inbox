@@ -75,22 +75,17 @@ export const routes = {
 
 export const config: { [key: string]: Credentials } = {
   prod: {
-    apiKey: 'd6a3cf19179a45a5daa9ac7f3f37e9d49914d2ad',
-    userEmail: 'matt@magicbell.io',
-    userHmac: '5n4ooUtzydnYq5GYh6PIWGeP2alepTf/Qgb/Sp/g3Co=',
-    serverURL: 'https://api.magicbell.com',
+    serverURL: 'https://api.magicbell.com/v2',
+    userJWT:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2VtYWlsIjpudWxsLCJ1c2VyX2V4dGVybmFsX2lkIjoiN2Y0YmFhYjUtMGM5MS00NGU4LThiNTgtNWZmODQ5NTM1MTc0IiwiYXBpX2tleSI6IjVmNWNmYjI5NTEzODQ2NDMzZTgxYjkxZWM1ZTkwOGM5NDNmZjYwNTgiLCJpYXQiOjE3NjM1NDMyOTksImV4cCI6MTc2MzYyOTY5OX0.NzZcuIv_g-nW0JAhF0i_pH4T96BHCfkdjkJOLnqvF6M',
   },
   local: {
-    apiKey: '8cd17191a14339cb1d4e58c4ea471eeca51d2c70',
-    userEmail: 'matt@magicbell.io',
-    userHmac: '',
     serverURL: 'https://1b35-79-153-3-135.ngrok-free.app',
+    userJWT: '',
   },
   review: {
-    apiKey: '552efd58f59315d065e45b07f8d8f8a2751c2b5b',
-    userEmail: 'matthewoxley001@gmail.com',
-    userHmac: '5n4ooUtzydnYq5GYh6PIWGeP2alepTf/Qgb/Sp/g3Co=',
     serverURL: 'https://api-4374.magicbell.cloud/',
+    userJWT: '',
   },
 };
 

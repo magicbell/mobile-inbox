@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { Button, SafeAreaView, ScrollView } from 'react-native';
+import { Button, SafeAreaView, ScrollView, ActivityIndicator, Text } from 'react-native';
 import { styles } from '../constants';
 import { useCredentials } from '../hooks/useAuth';
-import { useNotifications } from '@magicbell/react-headless';
+import { useMagicBell } from '../components/MagicBellProvider';
 import Notification from '../components/Notification';
 import usePushNotificationHandler from '../hooks/usePushNotificationHandler';
 
 export default function HomeScreen(): React.JSX.Element {
   const [_, __, logout] = useCredentials();
-  const store = useNotifications();
+  const { notifications, isLoading, error, fetchNotifications } = useMagicBell();
 
   usePushNotificationHandler();
+
+  useEffect(() => {
+    fetchNotifications();
+  }, [fetchNotifications]);
 
   return (
     <SafeAreaView style={styles.sectionContainer}>
       <ScrollView style={styles.scrollable}>
-        {store?.notifications.map((notification) => (
+        {isLoading && <ActivityIndicator size="large" />}
+        {error && <Text>Error: {error.message}</Text>}
+        {notifications?.map((notification) => (
           <Notification key={notification.id} data={notification} />
         ))}
       </ScrollView>

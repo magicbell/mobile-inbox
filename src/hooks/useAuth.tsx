@@ -1,16 +1,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
-import { UserClient } from 'magicbell/user-client';
+import { Client } from 'magicbell-js/user-client';
 import useDeviceToken from './useDeviceToken';
 
 const storageKey = 'mb';
 
 export type Credentials = {
-  apiKey: string;
-  userEmail: string;
-  userHmac: string;
   serverURL: string;
+  userJWT: string;
 };
 
 type CredentialsContextType = {
@@ -64,19 +62,17 @@ const getCredentials = async () => {
     return null;
   }
   try {
-    const { apiKey, userEmail, userHmac, serverURL } = JSON.parse(value);
-    const client = new UserClient({
-      apiKey: apiKey,
-      userEmail: userEmail,
-      userHmac: userHmac,
-      host: serverURL,
+    const { serverURL, userJWT } = JSON.parse(value);
+
+    const client = new Client({
+      token: userJWT,
+      baseUrl: serverURL,
     });
-    const config = await client.request({
-      method: 'GET',
-      path: '/config',
-    });
-    if (config) {
-      return { apiKey, userEmail, userHmac, serverURL };
+
+    // TODO: Verify bad credentials cannot be used
+    // Use the client to check the credentials are valid
+    if (client.config) {
+      return { serverURL, userJWT };
     }
   } catch (e) {
     console.error('Error parsing credentials', e);

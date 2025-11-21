@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { ButtonProps, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { colors } from '../constants';
 import Svg, { Circle } from 'react-native-svg';

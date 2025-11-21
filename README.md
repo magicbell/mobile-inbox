@@ -1,6 +1,6 @@
 # MagicBell Mobile Inbox
 
-This repo contains an open source mobile client for the MagicBell API, build in React Native. You can use it as an example project on how to setup a React Native app that integrates with MagicBell notifications and push notifications via APNs and FCM.
+This repo contains an open source mobile client for the MagicBell API, built in React Native. You can use it as an example project on how to setup a React Native app that integrates with MagicBell notifications and push notifications via APNs and FCM.
 
 To explore the full feature set of MagicBell, and to dive deeper into the API please refer to the [documentation](https://www.magicbell.com/docs).
 
@@ -31,7 +31,9 @@ In order to build the app you will need to have the native tool chains for the p
 
 You will also need [NodeJS](https://nodejs.org) and [Yarn](https://yarnpkg.com) for obvious reasons.
 
-More details on how to set up a React Native dev environment can be found on [reactnative.dev](https://reactnative.dev/docs/environment-setup).
+More details on how to set up a React Native dev environment can be found on [reactnative.dev](https://reactnative.dev/docs/set-up-your-environment).
+
+Install the dependencies by running `yarn`.
 
 ## Starting A Local Development Build
 
@@ -101,6 +103,26 @@ At this point you can use the keyboard shortcuts on the dashboard to build and o
 
 If you want to launch the app on a specific simulator or even device, you can use the `shift+i`/`shift+a` shortcuts, or start another build process from the terminal while keeping Metro in the background by running `yarn ios` or `yarn android` (both of which support additional parameters that can be inspected by passing `-h`).
 
+## Sending FCM Notifications
+To send notifications with FCM, you will need a [Firebase account](https://firebase.google.com/) and an Android app. You can create the app by using the `Add app` button on your console and selecting android.
+You should now see a button that says, `google-service.json`, using which you can download the `google-service.json` file.
+
+If you have a pre-registered app then you can go into the Project Settings of the app, and in the General tab, you can find the button to download `google-service.json` in the Your apps section.
+
+After downloading the file replace `google-service.json` file in the root of this project with your file.
+
+To launch the Android app you can use:
+```bash
+yarn android:clean
+```
+
+The command will do a clean Android build and launch the Android app in an emulator. 
+
+For authentication, you will need a MagicBell userJWT, you can [generate it using your MagicBell API Key and the external ID of the user](https://www.magicbell.com/docs/api/authentication/user) you want to send notifications to. 
+
+To test if you are receiving notifications correctly, you can use the [FCM Test](https://www.magicbell.com/test/fcm).
+
+You will need an Admin SDK private key, you can get it from your firebase console by going to the Project Settings by clicking on the gear button on the left sidebar. Then going to Service Accounts and clicking the `Generate new private key`, it will save a JSON file to your machine that you can then upload to the [MagicBell FCM Test](https://www.magicbell.com/test/fcm) page.
 
 ## Building Release Builds
 
