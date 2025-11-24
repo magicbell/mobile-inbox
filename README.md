@@ -104,25 +104,73 @@ At this point you can use the keyboard shortcuts on the dashboard to build and o
 If you want to launch the app on a specific simulator or even device, you can use the `shift+i`/`shift+a` shortcuts, or start another build process from the terminal while keeping Metro in the background by running `yarn ios` or `yarn android` (both of which support additional parameters that can be inspected by passing `-h`).
 
 ## Sending FCM Notifications
-To send notifications with FCM, you will need a [Firebase account](https://firebase.google.com/) and an Android app. You can create the app by using the `Add app` button on your console and selecting android.
-You should now see a button that says, `google-service.json`, using which you can download the `google-service.json` file.
 
-If you have a pre-registered app then you can go into the Project Settings of the app, and in the General tab, you can find the button to download `google-service.json` in the Your apps section.
+To send notifications with FCM, you will need to configure Mobile Inbox:
 
-After downloading the file replace `google-service.json` file in the root of this project with your file.
+You will need a [Firebase account](https://firebase.google.com/) and a Firebase Android app. 
 
-To launch the Android app you can use:
+1. You can create the Firebase Android app by using the `Add app` button on your Firebase console and selecting Android.
+
+2. Download the `google-service.json` file.
+If you're creating a new app, then, after adding your Android package name, you should see a button labelled `Download google-service.json`, which allows you to download the `google-service.json` file.
+If you have a pre-registered app, you can access the Project Settings of the app and, in the General tab, locate the button to download `google-service.json` in the "Your apps" section.
+
+3. Replace the `google-service.json` file in the root of this project with the downloaded file.
+
+4. Do a clean build and launch the Android app:
+
 ```bash
 yarn android:clean
 ```
 
-The command will do a clean Android build and launch the Android app in an emulator. 
-
-For authentication, you will need a MagicBell userJWT, you can [generate it using your MagicBell API Key and the external ID of the user](https://www.magicbell.com/docs/api/authentication/user) you want to send notifications to. 
+5. For authentication, you will need a MagicBell user JWT. You can [generate it using your MagicBell API Key and the external ID of the user](https://www.magicbell.com/docs/api/authentication/user) you want to send notifications to. 
 
 To test if you are receiving notifications correctly, you can use the [FCM Test](https://www.magicbell.com/test/fcm).
 
-You will need an Admin SDK private key, you can get it from your firebase console by going to the Project Settings by clicking on the gear button on the left sidebar. Then going to Service Accounts and clicking the `Generate new private key`, it will save a JSON file to your machine that you can then upload to the [MagicBell FCM Test](https://www.magicbell.com/test/fcm) page.
+6. You will need an Admin SDK private key.
+You can obtain it from your Firebase console. 
+Click on the gear icon in the left sidebar, then navigate to the Service Accounts tab and click `Generate new private key`, which saves a JSON file to your machine. 
+
+7. Upload the private key JSON file to the [MagicBell FCM Test](https://www.magicbell.com/test/fcm) page.
+
+8. Copy the generated Device Token from the console running the Expo app.
+The token will look like: 
+
+```
+posting token c2RAxxT6Qae-USMxxxQQhF:APA91bFxxmo7G_xBwBhiFl[...]FTrVU183-pxx4
+```
+
+9. Enter the device token on the [MagicBell FCM Test](https://www.magicbell.com/test/fcm) page and click `Send Notification.`
+
+## Sending APNs Notifications
+
+To send APNs Notifications, you need to start by configuring the Mobile Inbox Expo app.
+
+1. Update `appleTeamId` and the `bundleIdentifier` in the `app.json` file.
+Update the Team ID to the value configured with your project.
+
+2. Do a clean build of the iOS App:
+
+```bash
+yarn ios:clean
+```
+
+You can test the APNs Notification, using the [MagicBell APNs Test Page](https://www.magicbell.com/test/apns) and authenticating as a MagicBell user on the Mobile Inbox app.
+
+3. Go to the [MagicBell APNs Test Page](https://www.magicbell.com/test/apns) and enter your App ID, Certificate, Key ID, Team ID, and Badge to configure APNs.
+
+4. [Generate a userJWT](https://www.magicbell.com/docs/api/authentication/user) with your MagicBell API Key and the external ID of the user.
+
+5. Enter the User JWT and the v2 API URL, `"https://api.magicbell.com/v2"`, and Sign In.
+
+6. Copy the generated Device Token from the console running the Expo app.
+The token will look like: 
+
+```
+posting token 801bd597ba34abf2[...]1017df7a47fd6b14cbbf
+```
+
+7. Enter the Device Token on the [MagicBell APNs Test Page](https://www.magicbell.com/test/apns), select `development` as the Installation ID and click `Send Notification.`
 
 ## Building Release Builds
 
