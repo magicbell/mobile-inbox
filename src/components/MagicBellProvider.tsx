@@ -38,7 +38,7 @@ type MagicBellProviderProps = {
 };
 
 export default function MagicBellProvider({ children }: MagicBellProviderProps) {
-  const [credentials] = useCredentials();
+  const [credentials, _, signOut] = useCredentials();
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -56,6 +56,7 @@ export default function MagicBellProvider({ children }: MagicBellProviderProps) 
   const fetchNotifications = useCallback(
     async (params?: ListNotificationsParams) => {
       if (!client) {
+        signOut();
         setError(new Error('MagicBell client not initialized'));
         return;
       }
