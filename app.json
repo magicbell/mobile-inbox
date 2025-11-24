@@ -12,7 +12,7 @@
       "usesCleartextTraffic": true
     },
     "ios": {
-      "appleTeamId": "7847W99F5L",
+      "appleTeamId": "46V5H8FFSN",
       "bundleIdentifier": "com.magicbell.mobile-inbox",
       "config": {
         "usesNonExemptEncryption": false

@@ -21,7 +21,7 @@ export default function HomeScreen(): React.JSX.Element {
     <SafeAreaView style={styles.sectionContainer}>
       <ScrollView style={styles.scrollable}>
         {isLoading && <ActivityIndicator size="large" />}
-        {error && <Text>Error: {error.message}</Text>}
+        {error && <Text style={{ color: '#FFFFFF' }}>Error: {error.message}</Text>}
         {notifications?.map((notification) => (
           <Notification key={notification.id} data={notification} />
         ))}
