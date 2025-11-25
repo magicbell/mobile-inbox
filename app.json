@@ -7,12 +7,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png"
       },
-      "package": "com.magicbell.mobileinbox",
+      "package": "com.magicbell.mobile-inbox",
       "googleServicesFile": "./google-services.json",
       "usesCleartextTraffic": true
     },
     "ios": {
-      "appleTeamId": "46V5H8FFSN",
+      "appleTeamId": "7847W99F5L",
       "bundleIdentifier": "com.magicbell.mobile-inbox",
       "config": {
         "usesNonExemptEncryption": false
@@ -24,7 +24,8 @@
             "NSExceptionAllowsInsecureHTTPLoads": true
           }
         }
-      }
+      },
+      "associatedDomains": ["applinks:magicbell.com"]
     },
     "icon": "./assets/images/icon.png",
     "scheme": "x-magicbell-review",
@@ -53,6 +54,12 @@
           "imageWidth": 1024
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "4f1598aa-e38b-4785-b752-b99fe65c93b5"
+      }
+    },
+    "owner": "niyabits-mb"
   }
 }
