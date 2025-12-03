@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { SafeAreaView, View } from 'react-native';
-import { config, currentConfig, styles } from '../constants';
+import { SafeAreaView, View, Text, Linking } from 'react-native';
+import { currentConfig, styles } from '../constants';
 import CustomButton from '../components/Button';
 import TextInput from '../components/TextInput';
 import Svg, { G, Path } from 'react-native-svg';
-import { Box, CheckIcon, NativeBaseProvider, Select } from 'native-base';
+import { NativeBaseProvider } from 'native-base';
+import { colors } from '../constants';
 
 import { useCredentials } from '../hooks/useAuth';
 import useReviewCredentials from '../hooks/useReviewCredentials';
@@ -57,33 +58,15 @@ export const SignInScreen = (): React.JSX.Element => {
           </G>
         </Svg>
         <View>
-          <Box style={{ padding: 20 }}>
-            <Select
-              selectedValue={'ux'}
-              minWidth="200"
-              accessibilityLabel="Choose Configuration"
-              placeholder="Choose Configuration"
-              _selectedItem={{
-                bg: 'teal.600',
-                endIcon: <CheckIcon size="5" />,
-              }}
-              mt={1}
-              onValueChange={
-                ((itemValue: keyof typeof config) => {
-                  const c = config[itemValue];
-                  setServerURL(c.serverURL);
-                  setUserJWT(c.userJWT);
-                }) as (itemValue: string) => void
-              }
-            >
-              {Object.keys(config).map((key) => {
-                return <Select.Item key={key} label={key} value={key} />;
-              })}
-            </Select>
-          </Box>
           <TextInput placeholder="User JWT" value={userJWT} onChangeText={setUserJWT} />
           <TextInput placeholder="Server URL" value={serverURL} onChangeText={setServerURL} />
           <CustomButton title="Sign in" loading={loading} onPress={handleSubmit} />
+          <Text
+            style={{ marginTop: 8, textDecorationLine: 'underline', color: colors.text.link, textAlign: 'center' }}
+            onPress={() => Linking.openURL('https://www.magicbell.com/docs/api/authentication/user')}
+          >
+            How to create a user JWT
+          </Text>
         </View>
       </SafeAreaView>
     </NativeBaseProvider>

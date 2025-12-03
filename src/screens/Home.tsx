@@ -6,9 +6,10 @@ import { useCredentials } from '../hooks/useAuth';
 import { useMagicBell } from '../components/MagicBellProvider';
 import Notification from '../components/Notification';
 import usePushNotificationHandler from '../hooks/usePushNotificationHandler';
+import TokenBox from '../components/TokenBox';
 
 export default function HomeScreen(): React.JSX.Element {
-  const [_, __, logout] = useCredentials();
+  const [_, __, logout, token] = useCredentials();
   const { notifications, isLoading, error, fetchNotifications } = useMagicBell();
 
   usePushNotificationHandler();
@@ -26,6 +27,7 @@ export default function HomeScreen(): React.JSX.Element {
           <Notification key={notification.id} data={notification} />
         ))}
       </ScrollView>
+      <TokenBox token={token} />
       <Button title="logout" onPress={logout} />
     </SafeAreaView>
   );
