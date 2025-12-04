@@ -58,7 +58,14 @@ export const SignInScreen = (): React.JSX.Element => {
           </G>
         </Svg>
         <View>
-          <TextInput placeholder="User JWT" value={userJWT} onChangeText={setUserJWT} />
+          <TextInput
+            placeholder="User JWT"
+            multiline
+            numberOfLines={4}
+            value={userJWT}
+            onChangeText={setUserJWT}
+            style={{ minHeight: 70 }}
+          />
           <TextInput placeholder="Server URL" value={serverURL} onChangeText={setServerURL} />
           <CustomButton title="Sign in" loading={loading} onPress={handleSubmit} />
           <Text
