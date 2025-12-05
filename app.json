@@ -7,7 +7,7 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png"
       },
-      "package": "com.magicbell.mobile-inbox",
+      "package": "com.magicbell.mobileinbox",
       "googleServicesFile": "./google-services.json",
       "usesCleartextTraffic": true
     },
@@ -52,6 +52,14 @@
           "backgroundColor": "#1D1F29",
           "image": "./assets/images/splash.png",
           "imageWidth": 1024
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+           "kotlinVersion": "1.9.25"
+          }
         }
       ]
     ],
