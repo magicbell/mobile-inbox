@@ -76,8 +76,7 @@ export const routes = {
 export const config: { [key: string]: Credentials } = {
   prod: {
     serverURL: 'https://api.magicbell.com/v2',
-    userJWT:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2VtYWlsIjpudWxsLCJ1c2VyX2V4dGVybmFsX2lkIjoiN2Y0YmFhYjUtMGM5MS00NGU4LThiNTgtNWZmODQ5NTM1MTc0IiwiYXBpX2tleSI6IjVmNWNmYjI5NTEzODQ2NDMzZTgxYjkxZWM1ZTkwOGM5NDNmZjYwNTgiLCJpYXQiOjE3NjM5NzE1MTEsImV4cCI6MTc5NTUyOTExMX0.4Zty_YgwQKPsD8mNHqaneesrRe9XTtK5hlfj0RPl82Q',
+    userJWT: '',
   },
   local: {
     serverURL: 'https://1b35-79-153-3-135.ngrok-free.app',
@@ -89,4 +88,4 @@ export const config: { [key: string]: Credentials } = {
   },
 };
 
-export const currentConfig = config.local;
+export const currentConfig = config.prod;

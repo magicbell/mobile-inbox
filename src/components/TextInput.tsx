@@ -17,5 +17,7 @@ const styles = StyleSheet.create({
 });
 
 export default function CustomTextInput(props: TextInputProps) {
-  return <TextInput {...props} autoCapitalize="none" placeholderTextColor="#858585" style={styles.input} />;
+  return (
+    <TextInput {...props} autoCapitalize="none" placeholderTextColor="#858585" style={[styles.input, props.style]} />
+  );
 }

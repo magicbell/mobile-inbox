@@ -15,6 +15,7 @@ type CredentialsContextType = {
   credentials: Credentials | null | undefined;
   signIn: (c: Credentials) => void;
   signOut: () => void;
+  token: string | null;
 };
 
 const CredentialsContext = createContext<CredentialsContextType | null>(null);
@@ -24,13 +25,13 @@ export const useCredentials = () => {
   if (!context) {
     throw new Error('useCredentials must be used within a CredentialsProvider');
   }
-  return [context.credentials, context.signIn, context.signOut] as const;
+  return [context.credentials, context.signIn, context.signOut, context.token] as const;
 };
 
 export default function CredentialsProvider({ children }: { children: React.ReactElement }) {
   const [credentials, setCredentials] = useState<Credentials | null | undefined>(undefined);
 
-  useDeviceToken(credentials);
+  const token = useDeviceToken(credentials);
 
   const signIn = useCallback(async (c: Credentials) => {
     storeCredentials(c);
@@ -53,7 +54,11 @@ export default function CredentialsProvider({ children }: { children: React.Reac
     });
   }, []);
 
-  return <CredentialsContext.Provider value={{ credentials, signIn, signOut }}>{children}</CredentialsContext.Provider>;
+  return (
+    <CredentialsContext.Provider value={{ credentials, signIn, signOut, token }}>
+      {children}
+    </CredentialsContext.Provider>
+  );
 }
 
 const getCredentials = async () => {
